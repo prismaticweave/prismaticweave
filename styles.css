@@ -38,12 +38,13 @@ body {
   font-family: 'Spline Sans Mono', monospace;
   font-size: 3rem;
   margin-bottom: 1rem;
+  color: #000000;
 }
 
 .tagline {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  color: #E9E4F0;
+  color: #000000;
 }
 
 .text-block {
