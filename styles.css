@@ -40,7 +40,7 @@ body {
 
 .text-block {
   margin-bottom: 2rem;      /* space between text and button */
-  transform: translateY(-15vh); /* adjust this value to move it higher */
+  transform: translateY(-10vh); /* adjust this value to move it higher */
 }
 
 /* Button */
