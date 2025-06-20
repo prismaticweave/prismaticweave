@@ -75,28 +75,41 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 300%;
-  height: 300%;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 20%, transparent 70%);
-  animation: waveFloat 40s ease-in-out infinite;
+  width: 400%;
+  height: 400%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 10%, transparent 70%);
+  animation: waveDrift 120s ease-in-out infinite;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.5;
-  filter: blur(7px);
+  opacity: 0.3;
+  filter: blur(30px);
   mix-blend-mode: soft-light;
 }
 
-@keyframes waveFloat {
+@keyframes waveDrift {
   0% {
-    transform: translate(0%, 0%) scale(1);
+    transform: translate(0%, 0%) scale(1) rotate(0deg);
   }
   50% {
-    transform: translate(-10%, -5%) scale(1.02);
+    transform: translate(-10%, -5%) scale(1.03) rotate(15deg);
   }
   100% {
-    transform: translate(0%, 0%) scale(1);
+    transform: translate(0%, 0%) scale(1) rotate(0deg);
   }
 }
+  
+/* Veil Overlay */
+.veil-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1.5;
+}
+
 
 /* Particles (Twinkling Dots) */
 .particles {
@@ -120,6 +133,22 @@ body {
   border-radius: 50%;
   opacity: 0;
   animation: twinkleFade 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+.spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle,
+    rgba(255, 255, 230, 0.9) 0%,
+    rgba(255, 248, 200, 0.7) 50%,
+    rgba(255, 240, 170, 0.4) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkPulse 3s ease-in-out infinite;
+  filter: blur(0.5px);
+  mix-blend-mode: screen;
 }
 
 @keyframes twinkleFade {
@@ -171,22 +200,23 @@ body::before {
   left: 0;
   width: 200%;
   height: 200%;
-  background: linear-gradient(210deg, 
-    rgba(255, 192, 213, 1) 0%,
-    rgba(255, 210, 184, 1) 12%,
-    rgba(202, 255, 191, 1) 45%,
-    rgba(155, 246, 255, 1) 58%,
-    rgba(160, 196, 255, 1) 73%,
-    rgba(189, 178, 255, 1) 85%,
-    rgba(156, 149, 255, 1) 100%
+  background: linear-gradient(210deg,
+    #fcb0d6,
+    #ffb78f,
+    #b7ffae,
+    #84f0ff,
+    #8ab8ff,
+    #a99bff,
+    #8578ff
   );
   background-size: 400% 400%;
   animation: flowGradient 60s ease infinite;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.4;
   pointer-events: none;
   filter: blur(20px);
 }
+
 @keyframes sparkPulse {
   0%, 100% {
     opacity: 0;
