@@ -59,11 +59,3 @@ body {
   box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
 }
-
-/* Prism Glow Animation */
-.background-glow {
-  /* ...existing styles... */
-  /* animation: prismShift 20s linear infinite; */
-}
-
-/* Animation Keyframes */
