@@ -38,6 +38,11 @@ body {
   color: #E9E4F0;
 }
 
+.text-block {
+  margin-bottom: 2rem;      /* space between text and button */
+  transform: translateY(-15vh); /* adjust this value to move it higher */
+}
+
 /* Button */
 .cta {
   display: inline-block;
