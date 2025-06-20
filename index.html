@@ -13,6 +13,75 @@
   <div class="background-glow"></div>
   <div class="wave-overlay"></div>
   <div class="particles"></div>
+
+  <main class="content">
+    <div class="text-block">
+      <h1 class="title">Prismatic Weave Studio</h1>
+      <p class="tagline">Creative technology meets art, code, and systems.</p>
+    </div>
+
+    <div class="cta-container">
+      <div class="sparkler-cluster"></div>
+      <a class="cta" href="#coming-soon">Enter the weave</a>
+    </div>
+  </main>
+
+  <!-- ✅ Place your JS here -->
+  <script>
+    const particleContainer = document.querySelector('.particles');
+    const sparklerContainer = document.querySelector('.sparkler-cluster');
+
+    const starCount = 80;
+    const sparkCount = 30;
+
+    // Generate stars
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      const size = 1 + Math.random() * 2;
+      star.classList.add('star');
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${3 + Math.random() * 4}s`;
+      star.style.animationDelay = `${Math.random() * 6}s`;
+      particleContainer.appendChild(star);
+    }
+
+    // Generate sparkler sparks
+    for (let i = 0; i < sparkCount; i++) {
+      const spark = document.createElement('div');
+      spark.classList.add('spark');
+
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = Math.random() * 60 - 30; // -30px to +30px
+      const x = Math.cos(angle) * distance;
+      const y = Math.sin(angle) * distance;
+
+      spark.style.setProperty('--x', `${x}px`);
+      spark.style.setProperty('--y', `${y}px`);
+      spark.style.animationDelay = `${Math.random() * 3}s`;
+
+      sparklerContainer.appendChild(spark);
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prismatic Weave Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="background-glow"></div>
+  <div class="wave-overlay"></div>
+  <div class="particles"></div>
   <div class="sparkler-cluster"></div> <!-- 🔧 Added sparkler container -->
 
   <main class="content">
