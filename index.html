@@ -15,12 +15,25 @@
   <div class="particles"></div>
 
   <main class="content">
-  <div class="text-block">
-    <h1 class="title">Prismatic Weave Studio</h1>
-    <p class="tagline">Creative technology meets art, code, and systems.</p>
-  </div>
-  <a class="cta" href="#coming-soon">Enter the weave</a>
-</main>
-  
+    <div class="text-block">
+      <h1 class="title">Prismatic Weave Studio</h1>
+      <p class="tagline">Creative technology meets art, code, and systems.</p>
+    </div>
+    <a class="cta" href="#coming-soon">Enter the weave</a>
+  </main>
+
+  <script>
+    const particleContainer = document.querySelector('.particles');
+    const starCount = 80;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 6}s`;
+      particleContainer.appendChild(star);
+    }
+  </script>
 </body>
 </html>
