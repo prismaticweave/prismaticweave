@@ -52,32 +52,33 @@ body {
   transform: translateY(-10vh);
 }
 
-.shimmer-overlay {
+.wave-overlay {
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 200%;
+  left: 0;
+  width: 300%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0) 60%
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.05) 0,
+    rgba(255, 255, 255, 0.08) 50px,
+    transparent 150px
   );
+  animation: waveDrift 15s linear infinite;
   pointer-events: none;
-  animation: shimmerMove 18s linear infinite;
   z-index: 1;
-  mix-blend-mode: overlay;
-  opacity: 0.3;
-  filter: blur(20px);
+  opacity: 0.5;
+  filter: blur(50px);
+  mix-blend-mode: soft-light;
 }
 
-@keyframes shimmerMove {
+
+@keyframes waveDrift {
   0% {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(50%);
+    transform: translateX(-50%);
   }
 }
 
