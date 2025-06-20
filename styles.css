@@ -151,8 +151,7 @@ body {
   z-index: 1;
 }
 
-body::before,
-body::after {
+body::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -164,22 +163,24 @@ body::after {
     #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff
   );
   background-size: 400% 400%;
+  background-position: 0% 100%;
+  animation: flowGradient 120s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
-  filter: blur(45px);
+  filter: blur(55px);
   mix-blend-mode: screen;
-}
-
-body::before {
-  animation: flowSoft1 80s ease-in-out infinite;
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
 body::after {
-  animation: flowSoft2 120s ease-in-out infinite;
-  opacity: 0.15;
-  filter: blur(65px);
-  background: radial-gradient(circle at center,
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+      circle at center,
       rgba(0, 0, 0, 0.15) 0%,
       rgba(0, 0, 0, 0.05) 40%,
       transparent 80%
@@ -188,7 +189,14 @@ body::after {
       210deg,
       #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff
     );
+  background-size: 400% 400%;
+  background-position: 0% 100%;
+  animation: flowSoft2 120s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(65px);
   mix-blend-mode: soft-light, screen;
+  opacity: 0.15;
 }
 
 @keyframes sparkPulse {
