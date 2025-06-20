@@ -62,31 +62,8 @@ body {
 
 /* Prism Glow Animation */
 .background-glow {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(90deg,
-    rgba(255, 183, 197, 0.1),
-    rgba(197, 255, 252, 0.1),
-    rgba(207, 197, 255, 0.1),
-    rgba(255, 245, 197, 0.1),
-    rgba(255, 197, 243, 0.1)
-  );
-  background-size: 400% 100%;
-  animation: prismShift 20s linear infinite;
-  filter: blur(80px);
-  z-index: 1;
-  pointer-events: none;
+  /* ...existing styles... */
+  /* animation: prismShift 20s linear infinite; */
 }
 
 /* Animation Keyframes */
-@keyframes prismShift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(50%);
-  }
-}
