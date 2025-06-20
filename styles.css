@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(to top, #718ce3ff, #818fe3ff, #9192e3ff, #a094e4ff, #b097e4ff, #c09ae4ff, #d09de4ff, #df9fe5ff, #efa2e5ff, #ffa5e5ff);
+  background: linear-gradient(to top, #ffc0d5ff, #ffd2b8ff, #fdffbeff, #caffbfff, #9bf6ffff, #a0c4ffff, #bdb2ffff, #9c95ffff);
   height: 100vh;
   overflow: hidden;
   display: flex;
