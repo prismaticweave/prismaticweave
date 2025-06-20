@@ -1,4 +1,4 @@
-/* Global Reset + Font */
+/* Reset & Base */
 * {
   margin: 0;
   padding: 0;
@@ -8,29 +8,27 @@
 body {
   font-family: 'Inter', sans-serif;
   background: linear-gradient(to top, #292E49, #536976, #BBD2C5);
-  color: #f4f4f4;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  color: #f4f4f4;
+  padding: 2rem;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  padding: 2rem;
 }
 
-.container {
-  max-width: 600px;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-}
-
+/* Title & Layout */
 .title {
   font-family: 'Spline Sans Mono', monospace;
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
-  letter-spacing: 1px;
 }
 
 .tagline {
@@ -39,6 +37,7 @@ body {
   color: #E9E4F0;
 }
 
+/* Button */
 .cta {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -47,9 +46,41 @@ body {
   text-decoration: none;
   border-radius: 999px;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: box-shadow 0.4s ease, background 0.3s ease;
 }
 
 .cta:hover {
+  box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
+}
+
+/* Prism Glow Animation */
+.background-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    rgba(255, 183, 197, 0.1),
+    rgba(197, 255, 252, 0.1),
+    rgba(207, 197, 255, 0.1),
+    rgba(255, 245, 197, 0.1),
+    rgba(255, 197, 243, 0.1)
+  );
+  background-size: 400% 100%;
+  animation: prismShift 20s linear infinite;
+  filter: blur(80px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Animation Keyframes */
+@keyframes prismShift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
 }
