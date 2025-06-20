@@ -69,34 +69,6 @@ body {
   box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
 }
-
-/* Wave Overlay */
-.wave-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400%;
-  height: 400%;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 10%, transparent 70%);
-  animation: waveDrift 120s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.3;
-  filter: blur(30px);
-  mix-blend-mode: soft-light;
-}
-
-@keyframes waveDrift {
-  0% {
-    transform: translate(0%, 0%) scale(1) rotate(0deg);
-  }
-  50% {
-    transform: translate(-10%, -5%) scale(1.03) rotate(15deg);
-  }
-  100% {
-    transform: translate(0%, 0%) scale(1) rotate(0deg);
-  }
-}
   
 /* Veil Overlay */
 .veil-overlay {
@@ -179,42 +151,44 @@ body {
   z-index: 1;
 }
 
-.spark {
+body::before,
+body::after {
+  content: "";
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: radial-gradient(circle,
-    rgba(255, 255, 230, 0.9) 0%,
-    rgba(255, 248, 200, 0.7) 50%,
-    rgba(255, 240, 170, 0.4) 100%);
-  border-radius: 50%;
-  opacity: 0;
-  animation: sparkPulse 3s ease-in-out infinite;
-  filter: blur(0.5px);
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    210deg,
+    #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff
+  );
+  background-size: 400% 400%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(45px);
+  mix-blend-mode: screen;
 }
 
 body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(210deg,
-    #fcb0d6,
-    #ffb78f,
-    #b7ffae,
-    #84f0ff,
-    #8ab8ff,
-    #a99bff,
-    #8578ff
-  );
-  background-size: 400% 400%;
-  animation: flowGradient 60s ease infinite;
-  z-index: 0;
-  opacity: 0.4;
-  pointer-events: none;
-  filter: blur(20px);
+  animation: flowSoft1 80s ease-in-out infinite;
+  opacity: 0.25;
+}
+
+body::after {
+  animation: flowSoft2 120s ease-in-out infinite;
+  opacity: 0.15;
+  filter: blur(65px);
+  background: radial-gradient(circle at center,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.05) 40%,
+      transparent 80%
+    ),
+    linear-gradient(
+      210deg,
+      #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff
+    );
+  mix-blend-mode: soft-light, screen;
 }
 
 @keyframes sparkPulse {
@@ -248,4 +222,15 @@ body::before {
   100% {
     background-position: 0% 100%;
   }
+}
+@keyframes flowSoft1 {
+  0%   { transform: translate(0%, 0%) scale(1); }
+  50%  { transform: translate(10%, 15%) scale(1.05); }
+  100% { transform: translate(0%, 0%) scale(1); }
+}
+
+@keyframes flowSoft2 {
+  0%   { transform: translate(0%, 0%) scale(1); }
+  50%  { transform: translate(-15%, -10%) scale(1.08); }
+  100% { transform: translate(0%, 0%) scale(1); }
 }
