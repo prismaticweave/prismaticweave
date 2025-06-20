@@ -10,11 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="background-glow"></div>
-  <div class="wave-overlay"></div>
-  
-  <div class="particles"></div>
+  <!-- ✅ Background & Overlay Elements -->
   <div class="veil-overlay"></div>
+  <div class="particles"></div>
+
   <main class="content">
     <div class="text-block">
       <h1 class="title">Prismatic Weave Studio</h1>
@@ -27,7 +26,7 @@
     </div>
   </main>
 
-  <!-- ✅ Place your JS here -->
+  <!-- ✅ Particle and Sparkler JS -->
   <script>
     const particleContainer = document.querySelector('.particles');
     const sparklerContainer = document.querySelector('.sparkler-cluster');
@@ -49,20 +48,17 @@
       particleContainer.appendChild(star);
     }
 
-    // Generate sparkler sparks
+    // Generate sparks
     for (let i = 0; i < sparkCount; i++) {
       const spark = document.createElement('div');
       spark.classList.add('spark');
-
       const angle = Math.random() * 2 * Math.PI;
-      const distance = Math.random() * 60 - 30; // -30px to +30px
+      const distance = Math.random() * 60 - 30;
       const x = Math.cos(angle) * distance;
       const y = Math.sin(angle) * distance;
-
       spark.style.setProperty('--x', `${x}px`);
       spark.style.setProperty('--y', `${y}px`);
       spark.style.animationDelay = `${Math.random() * 3}s`;
-
       sparklerContainer.appendChild(spark);
     }
   </script>
