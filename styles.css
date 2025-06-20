@@ -7,6 +7,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background: #FFC0D5;
   background: linear-gradient(210deg, 
     rgba(255, 192, 213, 1) 0%,
     rgba(255, 210, 184, 1) 12%,
@@ -22,14 +23,14 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  color: #f4f4f4;
   padding: 2rem;
-  color: #000000;
 }
 
 /* Content Centering */
 .content {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   text-align: center;
 }
 
@@ -38,13 +39,13 @@ body {
   font-family: 'Spline Sans Mono', monospace;
   font-size: 3rem;
   margin-bottom: 1rem;
-  color: #000;
+  color: #000000;
 }
 
 .tagline {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  color: #000;
+  color: #000000;
 }
 
 .text-block {
@@ -62,12 +63,10 @@ body {
   border-radius: 999px;
   font-weight: bold;
   transition: box-shadow 0.4s ease, background 0.3s ease;
-  position: relative;
-  z-index: 3;
 }
 
 .cta:hover {
-  box-shadow: 0 0 12px 5px rgba(255, 248, 220, 0.6);
+  box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
 }
 
@@ -121,7 +120,6 @@ body {
   border-radius: 50%;
   opacity: 0;
   animation: twinkleFade 6s ease-in-out infinite;
-  filter: blur(0.5px);
 }
 
 @keyframes twinkleFade {
@@ -136,15 +134,20 @@ body {
 }
 
 /* Sparkler Cluster Behind Button */
+.cta-container {
+  position: relative;
+  display: inline-block;
+}
+
 .sparkler-cluster {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
 }
 
 .spark {
@@ -157,10 +160,43 @@ body {
     rgba(255, 240, 170, 0.4) 100%);
   border-radius: 50%;
   opacity: 0;
-  animation: sparkleFade 3s ease-in-out infinite;
+  animation: sparkPulse 3s ease-in-out infinite;
   filter: blur(0.5px);
 }
 
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(210deg, 
+    rgba(255, 192, 213, 1) 0%,
+    rgba(255, 210, 184, 1) 12%,
+    rgba(202, 255, 191, 1) 45%,
+    rgba(155, 246, 255, 1) 58%,
+    rgba(160, 196, 255, 1) 73%,
+    rgba(189, 178, 255, 1) 85%,
+    rgba(156, 149, 255, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: flowGradient 60s ease infinite;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
+  filter: blur(20px);
+}
+@keyframes sparkPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(1.8);
+  }
+}
 @keyframes sparkleFade {
   0%, 100% {
     opacity: 0;
@@ -169,5 +205,17 @@ body {
   50% {
     opacity: 1;
     transform: scale(1.8);
+  }
+}
+
+@keyframes flowGradient {
+  0% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
   }
 }
