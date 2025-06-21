@@ -44,7 +44,8 @@ body {
 /* Title & Layout */
 .title {
   font-family: 'ZenLoop-Regular', 'Spline Sans Mono', monospace;
-  font-size: 3rem;
+  font-size: 6rem;
+  letter-spacing: 0.05em
   margin-bottom: 1rem;
   color: #000000;
 }
