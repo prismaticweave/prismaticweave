@@ -1,3 +1,11 @@
+/* Custom Font */
+@font-face {
+  font-family: 'Moon Dance';
+  src: url('fonts/MoonDance-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Reset & Base */
 * {
   margin: 0;
@@ -6,7 +14,6 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
   background: #FFC0D5;
   background: linear-gradient(210deg, 
     rgba(255, 192, 213, 1) 0%,
@@ -36,7 +43,7 @@ body {
 
 /* Title & Layout */
 .title {
-  font-family: 'Spline Sans Mono', monospace;
+  font-family: 'Moon Dance', 'Spline Sans Mono', monospace;
   font-size: 3rem;
   margin-bottom: 1rem;
   color: #000000;
