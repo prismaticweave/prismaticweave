@@ -28,6 +28,9 @@
 }
 
 body {
+  body {
+  background: linear-gradient(210deg, #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff);
+}
   background: transparent;
   height: 100vh;
   overflow: hidden;
@@ -50,7 +53,7 @@ body {
 .title {
   font-family: 'ZenLoop-Regular', 'Spline Sans Mono', monospace;
   font-size: 6rem;
-  letter-spacing: 0.05em
+  letter-spacing: 0.05em;
   margin-bottom: 1rem;
   color: #000000;
 }
@@ -192,7 +195,7 @@ body::before {
   z-index: 0;
   filter: blur(55px);
   mix-blend-mode: screen;
-  opacity: 0.2;
+  opacity: 0.6;
 }
 
 body::after {
@@ -219,7 +222,7 @@ body::after {
   z-index: 0;
   filter: blur(65px);
   mix-blend-mode: soft-light, screen;
-  opacity: 0.05;
+  opacity: 0.02;
 }
 
 @keyframes sparkPulse {
