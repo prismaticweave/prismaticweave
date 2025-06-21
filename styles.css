@@ -27,17 +27,39 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: transparent;
-  height: 100vh;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   color: #f4f4f4;
   padding: 2rem;
 }
+
+/* Internal Pages Layout */
+body.internal {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+body.internal main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Navbar */
 .navbar {
   position: absolute;
   top: 1rem;
@@ -61,7 +83,7 @@ body {
   color: #555;
 }
 
-/* Content Centering */
+/* Content */
 .content {
   position: relative;
   z-index: 3;
@@ -74,7 +96,7 @@ body {
   font-size: 7.5rem;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
-  color: #000000;
+  color: #000;
 }
 
 .tagline {
@@ -101,13 +123,8 @@ body {
   text-decoration: none;
   border-radius: 999px;
   transition: box-shadow 0.4s ease, background 0.3s ease;
-  position: relative; /* Needed for ::before to anchor correctly */
-  overflow: hidden; /* Hide overflow shimmer glow */
-}
-
-.cta-container {
   position: relative;
-  display: inline-block;
+  overflow: hidden;
 }
 
 .cta::before {
@@ -136,22 +153,15 @@ body {
 }
 
 @keyframes shimmer-glow {
-  0% {
-    transform: translateX(-100%);
-  }
-  50% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
 .cta:hover {
   box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
 }
-
 
 /* Veil Overlay */
 .veil-overlay {
@@ -165,7 +175,7 @@ body {
   z-index: 1;
 }
 
-/* Particles (Twinkling Dots) */
+/* Particles */
 .particles {
   position: absolute;
   top: 0;
@@ -176,20 +186,7 @@ body {
   z-index: 2;
 }
 
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: radial-gradient(circle,
-    rgba(255, 255, 230, 0.9) 0%,
-    rgba(255, 248, 200, 0.7) 50%,
-    rgba(255, 240, 170, 0.4) 100%);
-  border-radius: 50%;
-  opacity: 0;
-  animation: twinkleFade 6s ease-in-out infinite;
-  mix-blend-mode: screen;
-}
-
+.star,
 .spark {
   position: absolute;
   width: 2px;
@@ -200,23 +197,29 @@ body {
     rgba(255, 240, 170, 0.4) 100%);
   border-radius: 50%;
   opacity: 0;
-  animation: sparkPulse 3s ease-in-out infinite;
-  filter: blur(0.5px);
   mix-blend-mode: screen;
 }
 
-@keyframes twinkleFade {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.5);
-  }
+.star {
+  animation: twinkleFade 6s ease-in-out infinite;
 }
 
-/* Sparkler Cluster Behind Button */
+.spark {
+  animation: sparkPulse 3s ease-in-out infinite;
+  filter: blur(0.5px);
+}
+
+@keyframes twinkleFade {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+@keyframes sparkPulse {
+  0%, 100% { opacity: 0; transform: translate(0, 0) scale(0.7); }
+  50% { opacity: 1; transform: translate(var(--x), var(--y)) scale(1.8); }
+}
+
+/* Sparkler Cluster */
 .sparkler-cluster {
   position: absolute;
   top: 50%;
@@ -228,6 +231,7 @@ body {
   z-index: 1;
 }
 
+/* Background Animation */
 body::before {
   content: "";
   position: absolute;
@@ -265,16 +269,9 @@ body::after {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(
-      circle at center,
-      rgba(0, 0, 0, 0.15) 0%,
-      rgba(0, 0, 0, 0.05) 40%,
-      transparent 80%
-    ),
-    linear-gradient(
-      210deg,
-      #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff
-    );
+  background:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, transparent 80%),
+    linear-gradient(210deg, #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff);
   background-size: 400% 400%;
   background-position: 0% 100%;
   animation: flowSoft2 120s ease-in-out infinite;
@@ -285,42 +282,10 @@ body::after {
   opacity: 0.02;
 }
 
-@keyframes sparkPulse {
-  0%, 100% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.7);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(var(--x), var(--y)) scale(1.8);
-  }
-}
-@keyframes sparkleFade {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.8);
-  }
-}
-
 @keyframes flowGradient {
-  0% {
-    background-position: 0% 100%;
-  }
-  50% {
-    background-position: 100% 0%;
-  }
-  100% {
-    background-position: 0% 100%;
-  }
-}
-@keyframes flowSoft1 {
-  0%   { transform: translate(0%, 0%) scale(1); }
-  50%  { transform: translate(10%, 15%) scale(1.05); }
-  100% { transform: translate(0%, 0%) scale(1); }
+  0%   { background-position: 0% 100%; }
+  50%  { background-position: 100% 0%; }
+  100% { background-position: 0% 100%; }
 }
 
 @keyframes flowSoft2 {
@@ -328,19 +293,8 @@ body::after {
   50%  { transform: translate(-15%, -10%) scale(1.08); }
   100% { transform: translate(0%, 0%) scale(1); }
 }
-html, body.internal {
-  height: 100%;
-}
 
-body.internal {
-  display: flex;
-  flex-direction: column;
-}
-
-body.internal main {
-  flex: 1;
-}
-
+/* Footer */
 footer {
   text-align: center;
   padding: 1rem 0;
