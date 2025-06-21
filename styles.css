@@ -27,7 +27,7 @@
   box-sizing: border-box;
 }
 
-  body {
+body {
   background: transparent;
   height: 100vh;
   overflow: hidden;
@@ -48,7 +48,7 @@
 
 /* Title & Layout */
 .title {
-  font-family: 'ZenLoop', 'Spline Sans Mono', monospace;
+  font-family: 'ZenLoop-Regular', 'Spline Sans Mono', monospace;
   font-size: 6rem;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
@@ -56,7 +56,7 @@
 }
 
 .tagline {
-  font-family: 'Squarish', sans-serif;
+  font-family: 'Squarish', serif;
   font-weight: 400;
   font-size: 1.2rem;
   color: #000;
@@ -70,7 +70,7 @@
 
 /* CTA Button */
 .cta {
-  font-family: 'Squarish', sans-serif;
+  font-family: 'Squarish', serif;
   font-weight: 700;
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -78,6 +78,7 @@
   color: #292E49;
   text-decoration: none;
   border-radius: 999px;
+  font-weight: bold;
   transition: box-shadow 0.4s ease, background 0.3s ease;
 }
 
@@ -85,7 +86,7 @@
   box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
 }
-  
+
 /* Veil Overlay */
 .veil-overlay {
   position: absolute;
@@ -97,7 +98,6 @@
   pointer-events: none;
   z-index: 1;
 }
-
 
 /* Particles (Twinkling Dots) */
 .particles {
@@ -176,13 +176,16 @@ body::before {
   height: 200%;
   background: linear-gradient(
     210deg,
-    rgba(255, 192, 213, 1) 0%,
-    rgba(255, 210, 184, 1) 12%,
-    rgba(202, 255, 191, 1) 45%,
-    rgba(155, 246, 255, 1) 58%,
-    rgba(160, 196, 255, 1) 73%,
-    rgba(189, 178, 255, 1) 85%,
-    rgba(156, 149, 255, 1) 100%
+    #ff9970ff,
+    #ebd22dff,
+    #dfff61ff,
+    #abff61ff,
+    #76ff61ff,
+    #61ff81ff,
+    #61ffb5ff,
+    #3febfeff,
+    #8aadffff,
+    #a787ffff
   );
   background-size: 400% 400%;
   background-position: 0% 100%;
@@ -231,7 +234,6 @@ body::after {
     transform: translate(var(--x), var(--y)) scale(1.8);
   }
 }
-
 @keyframes sparkleFade {
   0%, 100% {
     opacity: 0;
@@ -254,7 +256,6 @@ body::after {
     background-position: 0% 100%;
   }
 }
-
 @keyframes flowSoft1 {
   0%   { transform: translate(0%, 0%) scale(1); }
   50%  { transform: translate(10%, 15%) scale(1.05); }
