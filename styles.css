@@ -1,7 +1,7 @@
 /* Custom Font */
 @font-face {
-  font-family: 'Moon Dance';
-  src: url('fonts/MoonDance-Regular.ttf') format('truetype');
+  font-family: 'ZenLoop-Regular';
+  src: url('fonts/ZenLoop-Regular.woff2') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -43,7 +43,7 @@ body {
 
 /* Title & Layout */
 .title {
-  font-family: 'Moon Dance', 'Spline Sans Mono', monospace;
+  font-family: 'ZenLoop-Regular', 'Spline Sans Mono', monospace;
   font-size: 3rem;
   margin-bottom: 1rem;
   color: #000000;
