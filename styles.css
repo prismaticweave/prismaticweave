@@ -27,10 +27,7 @@
   box-sizing: border-box;
 }
 
-body {
   body {
-  background: linear-gradient(210deg, #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff);
-}
   background: transparent;
   height: 100vh;
   overflow: hidden;
@@ -234,6 +231,7 @@ body::after {
     transform: translate(var(--x), var(--y)) scale(1.8);
   }
 }
+
 @keyframes sparkleFade {
   0%, 100% {
     opacity: 0;
@@ -256,6 +254,7 @@ body::after {
     background-position: 0% 100%;
   }
 }
+
 @keyframes flowSoft1 {
   0%   { transform: translate(0%, 0%) scale(1); }
   50%  { transform: translate(10%, 15%) scale(1.05); }
