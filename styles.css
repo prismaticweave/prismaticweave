@@ -1,7 +1,7 @@
 /* Custom Font */
 @font-face {
-  font-family: 'Squarish';
-  src: url('fonts/ZF2334Squarish-Light.woff2') format('woff2');
+  font-family: 'ZenLoop';
+  src: url('fonts/ZenLoop-Regular.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
 }
