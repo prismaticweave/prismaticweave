@@ -328,16 +328,16 @@ body::after {
   50%  { transform: translate(-15%, -10%) scale(1.08); }
   100% { transform: translate(0%, 0%) scale(1); }
 }
-html, body {
+html, body.internal {
   height: 100%;
 }
 
-body {
+body.internal {
   display: flex;
   flex-direction: column;
 }
 
-main {
+body.internal main {
   flex: 1;
 }
 
