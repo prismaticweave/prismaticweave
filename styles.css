@@ -38,6 +38,28 @@ body {
   color: #f4f4f4;
   padding: 2rem;
 }
+.navbar {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  font-family: 'Squarish', sans-serif;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.navbar a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #555;
+}
 
 /* Content Centering */
 .content {
