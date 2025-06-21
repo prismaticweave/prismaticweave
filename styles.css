@@ -78,14 +78,58 @@ body {
   color: #292E49;
   text-decoration: none;
   border-radius: 999px;
-  font-weight: bold;
   transition: box-shadow 0.4s ease, background 0.3s ease;
+  position: relative; /* Needed for ::before to anchor correctly */
+  overflow: hidden; /* Hide overflow shimmer glow */
+}
+
+.cta-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer-glow 2s linear infinite;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 999px;
+}
+
+.cta:hover::before {
+  opacity: 1;
+}
+
+@keyframes shimmer-glow {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .cta:hover {
   box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
 }
+
 
 /* Veil Overlay */
 .veil-overlay {
