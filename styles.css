@@ -14,7 +14,7 @@
 }
 
 body {
-  background: #FFC0D5;
+  background: transparent;
   height: 100vh;
   overflow: hidden;
   display: flex;
