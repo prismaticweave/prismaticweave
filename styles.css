@@ -217,11 +217,6 @@ body {
 }
 
 /* Sparkler Cluster Behind Button */
-.cta-container {
-  position: relative;
-  display: inline-block;
-}
-
 .sparkler-cluster {
   position: absolute;
   top: 50%;
