@@ -159,7 +159,13 @@ body::before {
   height: 200%;
   background: linear-gradient(
     210deg,
-    #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff
+    rgba(255, 192, 213, 1) 0%,
+    rgba(255, 210, 184, 1) 12%,
+    rgba(202, 255, 191, 1) 45%,
+    rgba(155, 246, 255, 1) 58%,
+    rgba(160, 196, 255, 1) 73%,
+    rgba(189, 178, 255, 1) 85%,
+    rgba(156, 149, 255, 1) 100%
   );
   background-size: 400% 400%;
   background-position: 0% 100%;
@@ -195,7 +201,7 @@ body::after {
   z-index: 0;
   filter: blur(65px);
   mix-blend-mode: soft-light, screen;
-  opacity: 0.15;
+  opacity: 0.05;
 }
 
 @keyframes sparkPulse {
