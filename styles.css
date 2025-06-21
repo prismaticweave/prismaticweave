@@ -48,7 +48,7 @@ body {
 
 /* Title & Layout */
 .title {
-  font-family: 'ZenLoop-Regular', 'Spline Sans Mono', monospace;
+  font-family: 'ZenLoop', 'Spline Sans Mono', monospace;
   font-size: 6rem;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
