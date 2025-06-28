@@ -121,6 +121,7 @@ body.internal main {
   background: linear-gradient(to right, #D3CCE3, #E9E4F0);
   color: #292E49;
   text-decoration: none;
+  border: 2px solid transparent;
   border-radius: 999px;
   transition: box-shadow 0.4s ease, background 0.3s ease;
   position: relative;
@@ -130,6 +131,17 @@ body.internal main {
 .cta:hover {
   box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
+  border: 2px solid #E9E4F0;
+  animation: pulseOutline 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseOutline {
+  0%, 100% { 
+    box-shadow: 0 0 10px 3px #E9E4F0, 0 0 0 0 rgba(233, 228, 240, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 15px 5px #E9E4F0, 0 0 0 8px rgba(233, 228, 240, 0.1);
+  }
 }
 
 /* Veil Overlay */
@@ -182,7 +194,7 @@ body::after {
   height: 200%;
   background:
     linear-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, transparent 80%),
-    linear-gradient(160deg, #ff6b6b, #ffa726, #66bb6a, #26c6da, #5c6bc0, #ab47bc)  pointer-events: none;
+    linear-gradient(160deg, #ff6b6b, #ffa726, #66bb6a, #26c6da, #5c6bc0, #ab47bc); pointer-events: none;
   z-index: 0;
   filter: blur(65px);
   mix-blend-mode: soft-light, screen;
