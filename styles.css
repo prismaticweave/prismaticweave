@@ -139,7 +139,7 @@ body.internal main {
   left: 0;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+  background: linear-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
   pointer-events: none;
   z-index: 1;
 }
@@ -180,7 +180,7 @@ body::after {
   width: 200%;
   height: 200%;
   background:
-    radial-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, transparent 80%),
+    linear-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, transparent 80%),
     linear-gradient(210deg, #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff);
   pointer-events: none;
   z-index: 0;
