@@ -167,7 +167,6 @@ body::before {
   width: 200%;
   height: 200%;
   /* Keep your vision but add modern "breathing room" */
-body::before {
   background: linear-gradient(
     210deg,
     #ff9970ff,
@@ -180,13 +179,13 @@ body::before {
     #3febfeff,
     #536dfe,    /* modern blue accent */
     #a787ffff
-);
+  );
   pointer-events: none;
   z-index: 0;
-  filter: blur(55px);
+  filter: blur(35px);
   mix-blend-mode: screen;
   opacity: 0.6;
-  animation: rotate 15s linear infinite;
+  animation: rotate 30s linear infinite;
 }
 
 body::after {
