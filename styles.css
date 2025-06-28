@@ -180,8 +180,7 @@ body::before {
     #3febfeff,
     #536dfe,    /* modern blue accent */
     #a787ffff
-  );
-}
+);
   pointer-events: none;
   z-index: 0;
   filter: blur(55px);
