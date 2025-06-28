@@ -1,16 +1,27 @@
-## Hi there 👋
+# Prismatic Weave Studio
 
-<!--
-**prismaticweave/prismaticweave** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**Welcome to the official repository for [Prismatic Weave Studio](https://prismaticweave.studio)**  
+A living portfolio and digital sanctuary built to showcase my creative and technical work, while empowering others through open knowledge, ethical design, and privacy-focused tools.
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### ✨ What This Site Includes
+
+- 🧬 **About**: My mission, qualifications, and journey in tech & design  
+- 🧠 **Portfolio**: Creative & technical projects, personal endeavors  
+- 🛠️ **Resources**: Tutorials, templates, downloads  
+- 💌 **Contact**: Secure ways to connect or support
+
+---
+
+### 🧪 Status
+
+This site is a **work in progress**. Expect frequent updates and new content as I continue developing features and refining the structure.
+
+---
+
+### 📜 License
+
+Content on this site is © 2025 Prismatic Weave Studio unless otherwise noted. Some open-source portions may be shared under permissive licenses soon—stay tuned.
+
+---
