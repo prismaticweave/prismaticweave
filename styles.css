@@ -135,6 +135,7 @@ body.internal main {
   animation: pulseOutline 1.5s ease-in-out infinite;
 }
 
+/*
 @keyframes pulseOutline {
   0%, 100% { 
     box-shadow: 0 0 10px 3px #E9E4F0, 0 0 0 0 rgba(233, 228, 240, 0.4);
@@ -142,7 +143,7 @@ body.internal main {
   50% { 
     box-shadow: 0 0 15px 5px #E9E4F0, 0 0 0 8px rgba(233, 228, 240, 0.1);
   }
-}
+}  */
 
 /* Veil Overlay */
 /*
@@ -165,19 +166,22 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
+  /* Keep your vision but add modern "breathing room" */
+body::before {
   background: linear-gradient(
     210deg,
     #ff9970ff,
-    #ebd22dff,
+    #ffcc02ff,  /* more saturated yellow accent */
     #dfff61ff,
-    #abff61ff,
+    #00e676ff,  /* electric green accent */
     #76ff61ff,
     #61ff81ff,
-    #61ffb5ff,
+    #00e5ffff,  /* electric cyan accent */
     #3febfeff,
-    #8aadffff,
+    #536dfe,    /* modern blue accent */
     #a787ffff
   );
+}
   pointer-events: none;
   z-index: 0;
   filter: blur(55px);
