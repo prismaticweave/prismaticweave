@@ -32,7 +32,6 @@ html, body {
 }
 
 body {
-  background: transparent;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -41,6 +40,40 @@ body {
   position: relative;
   color: #f4f4f4;
   padding: 2rem;
+
+  /* Background & animation */
+  filter: hue-rotate(0deg);
+  animation: hueShift 10s linear infinite;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: linear-gradient(
+    210deg,
+    #ff9970ff,
+    #ffcc02ff,
+    #dfff61ff,
+    #00e676ff,
+    #76ff61ff,
+    #61ff81ff,
+    #00e5ffff,
+    #3febfeff,
+    #536dfe,
+    #a787ffff
+  );
+
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+
+  filter: blur(30px);
 }
 
 /* Internal Pages Layout */
@@ -135,7 +168,24 @@ body.internal main {
   animation: pulseOutline 1.5s ease-in-out infinite;
 }
 
-/*
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: #000;
+}
+
+/* Animations */
+@keyframes hueShift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
 @keyframes pulseOutline {
   0%, 100% { 
     box-shadow: 0 0 10px 3px #E9E4F0, 0 0 0 0 rgba(233, 228, 240, 0.4);
@@ -143,80 +193,4 @@ body.internal main {
   50% { 
     box-shadow: 0 0 15px 5px #E9E4F0, 0 0 0 8px rgba(233, 228, 240, 0.1);
   }
-}  */
-
-/* Veil Overlay */
-/* .veil-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-}  */
-
-/* Static Background */
-body::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  /* Keep your vision but add modern "breathing room" */
-  background: linear-gradient(
-    210deg,
-    #ff9970ff,
-    #ffcc02ff,  /* more saturated yellow accent */
-    #dfff61ff,
-    #00e676ff,  /* electric green accent */
-    #76ff61ff,
-    #61ff81ff,
-    #00e5ffff,  /* electric cyan accent */
-    #3febfeff,
-    #536dfe,    /* modern blue accent */
-    #a787ffff
-  );
-  pointer-events: none;
-  z-index: 0;
-  mix-blend-mode: screen;
-  opacity: 0.6;
-  animation: backgrounfFlow 120s ease-in-out infinite;
-  filter: blur (30px);
-}
-
-@keyframes backgroundFlow {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-body::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    linear-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, transparent 80%),
-    linear-gradient(160deg, #ff6b6b, #ffa726, #66bb6a, #26c6da, #5c6bc0, #ab47bc); pointer-events: none;
-  z-index: 0;
-  filter: blur(65px);
-  mix-blend-mode: soft-light, screen;
-  opacity: 0.02;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-/* Footer */
-footer {
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-  color: #000;
 }
