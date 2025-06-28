@@ -181,10 +181,16 @@ body::before {
   );
   pointer-events: none;
   z-index: 0;
-  filter: blur(40px);
   mix-blend-mode: screen;
   opacity: 0.6;
-  animation: rotate 45s linear infinite;
+  animation: backgrounfFlow 120s ease-in-out infinite;
+  filter: blur (30px);
+}
+
+@keyframes backgroundFlow {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 body::after {
