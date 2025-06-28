@@ -182,8 +182,7 @@ body::after {
   height: 200%;
   background:
     linear-gradient(circle at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, transparent 80%),
-    linear-gradient(210deg, #ffbfd4, #ffd2b8, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #9c95ff);
-  pointer-events: none;
+    linear-gradient(160deg, #ff6b6b, #ffa726, #66bb6a, #26c6da, #5c6bc0, #ab47bc)  pointer-events: none;
   z-index: 0;
   filter: blur(65px);
   mix-blend-mode: soft-light, screen;
