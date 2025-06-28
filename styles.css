@@ -170,6 +170,7 @@ body::before {
   filter: blur(55px);
   mix-blend-mode: screen;
   opacity: 0.6;
+  animation: rotate 15s linear infinite;
 }
 
 body::after {
@@ -189,6 +190,10 @@ body::after {
   opacity: 0.02;
 }
 
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 /* Footer */
 footer {
   text-align: center;
