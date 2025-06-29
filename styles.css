@@ -29,10 +29,11 @@
 
 html, body {
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 body {
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,40 +41,45 @@ body {
   position: relative;
   color: #f4f4f4;
   padding: 2rem;
-
-  /* Background & animation */
-  filter: hue-rotate(0deg);
-  animation: hueShift 10s linear infinite;
+  font-family: 'Squarish', sans-serif;
+  background: transparent;
 }
 
+/* --- Layered Static Backgrounds --- */
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  background: linear-gradient(
-    210deg,
-    #ff9970ff,
-    #ffcc02ff,
-    #dfff61ff,
-    #00e676ff,
-    #76ff61ff,
-    #61ff81ff,
-    #00e5ffff,
-    #3febfeff,
-    #536dfe,
-    #a787ffff
-  );
-
-  pointer-events: none;
+  top: 0; left: 0; right: 0; bottom: 0;
   z-index: 0;
-  mix-blend-mode: screen;
-  opacity: 0.6;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255, 252, 252, 1) 0%,
+    rgba(156, 156, 156, 1) 26%,
+    rgba(105, 105, 105, 1) 60%,
+    rgba(38, 38, 38, 1) 100%
+  );
+  filter: blur(40px);
+  opacity: 0.5;
+}
 
-  filter: blur(50px);
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 237, 1) 13%,
+    rgba(255, 204, 228, 1) 34%,
+    rgba(152, 226, 250, 1) 56%,
+    rgba(120, 181, 250, 1) 76%,
+    rgba(115, 145, 255, 1) 100%
+  );
+  filter: blur(60px);
+  opacity: 0.4;
+  mix-blend-mode: screen;
 }
 
 /* Internal Pages Layout */
@@ -156,7 +162,7 @@ body.internal main {
   text-decoration: none;
   border: 2px solid transparent;
   border-radius: 999px;
-  transition: box-shadow 0.4s ease, background 0.3s ease;
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -165,7 +171,17 @@ body.internal main {
   box-shadow: 0 0 10px 3px #E9E4F0;
   background: linear-gradient(to right, #E9E4F0, #D3CCE3);
   border: 2px solid #E9E4F0;
-  animation: pulseOutline 1.5s ease-in-out infinite;
+  transform: scale(1.05);
+}
+
+/* Optional CTA micro-animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px 3px #E9E4F0;
+  }
+  50% {
+    box-shadow: 0 0 20px 6px #E9E4F0;
+  }
 }
 
 /* Footer */
@@ -174,23 +190,4 @@ footer {
   padding: 1rem 0;
   font-size: 0.9rem;
   color: #000;
-}
-
-/* Animations */
-@keyframes hueShift {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
-}
-
-@keyframes pulseOutline {
-  0%, 100% { 
-    box-shadow: 0 0 10px 3px #E9E4F0, 0 0 0 0 rgba(233, 228, 240, 0.4);
-  }
-  50% { 
-    box-shadow: 0 0 15px 5px #E9E4F0, 0 0 0 8px rgba(233, 228, 240, 0.1);
-  }
 }
