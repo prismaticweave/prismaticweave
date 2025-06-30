@@ -1,21 +1,21 @@
-/* Custom Font */
+/* Custom Fonts */
 @font-face {
   font-family: 'ZenLoop';
-  src: url('fonts/ZenLoop-Regular.woff2') format('woff2');
+  src: url('assets/fonts/ZenLoop-Regular.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Squarish';
-  src: url('fonts/ZF2334Squarish-Regular.woff2') format('woff2');
+  src: url('assets/fonts/ZF2334Squarish-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Squarish';
-  src: url('fonts/ZF2334Squarish-Bold.woff2') format('woff2');
+  src: url('assets/fonts/ZF2334Squarish-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
@@ -39,40 +39,9 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  color: #f4f4f4;
+  color: #000;
   padding: 2rem;
   font-family: 'Squarish', sans-serif;
-  background: transparent;
-}
-
-/* --- Layered Static Backgrounds --- */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at 40% 50%,
-    rgba(255, 252, 252, 1) 0%,
-    rgba(156, 156, 156, 1) 26%,
-    rgba(105, 105, 105, 1) 60%,
-    rgba(38, 38, 38, 1) 100%
-  );
-  filter: blur(40px);
-  opacity: 0.5;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 156, 205, 1) 0%, rgba(48, 217, 183, 1) 53%, rgba(35, 69, 194, 1) 100%);
-/*   filter: blur(60px); */
-  opacity: 0.4;
-  mix-blend-mode: screen;
 }
 
 /* Internal Pages Layout */
@@ -155,26 +124,12 @@ body.internal main {
   text-decoration: none;
   border: 2px solid transparent;
   border-radius: 999px;
-  transition: box-shadow 0.4s ease, transform 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .cta:hover {
-  box-shadow: 0 0 10px 3px #E9E4F0;
-  background: linear-gradient(to right, #E9E4F0, #D3CCE3);
   border: 2px solid #E9E4F0;
-  transform: scale(1.05);
-}
-
-/* Optional CTA micro-animation */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px 3px #E9E4F0;
-  }
-  50% {
-    box-shadow: 0 0 20px 6px #E9E4F0;
-  }
 }
 
 /* Footer */
