@@ -1,0 +1,70 @@
+/* ========== FONT SETUP ========== */
+@font-face {
+  font-family: 'ZenLoop';
+  src: url('assets/fonts/ZenLoop-Regular.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Squarish';
+  src: url('assets/fonts/ZF2334Squarish-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Squarish';
+  src: url('assets/fonts/ZF2334Squarish-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== GLOBAL LAYOUT ========== */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  font-family: 'Squarish', sans-serif;
+  color: #FFFFFF;
+  background: black; /* fallback */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page-wrapper {
+  flex: 1;
+}
+
+/* ========== UNIVERSAL BACKGROUND GRADIENT ========== */
+.gradient-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(225deg, #4cc9f0, #4361ee, #3a0ca3, #2e003e);
+}
+body > *:not(.gradient-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== SHARED FOOTER ========== */
+.sticky-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1rem;
+  font-family: 'Squarish', sans-serif;
+  font-size: 0.9rem;
+  color: #FFFFFF;
+  background: transparent;
+  z-index: 2;
+}
