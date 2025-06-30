@@ -39,9 +39,13 @@ html, body {
 /* Background gradient layer */
 .gradient-layer {
   position: fixed;
-  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  inset: 0;
   z-index: 0;
   background: linear-gradient(225deg, #4cc9f0, #4361ee, #3a0ca3, #2e003e);
+}
+body > *:not(.gradient-layer) {
+  position: relative;
+  z-index: 1;
 }
 
 /* Content container */
