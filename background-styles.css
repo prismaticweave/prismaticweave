@@ -35,6 +35,7 @@ html, body {
   overflow-y: auto;
   position: relative;
   font-family: 'Squarish', sans-serif;
+  font-size: clamp(18px, 1.2vw, 20px);
   color: #FFFFFF;
   background: black; /* fallback */
   display: flex;
