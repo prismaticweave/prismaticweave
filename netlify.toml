@@ -1,0 +1,3 @@
+[build]
+  command = "npm run build"       # Or whatever your build step is (e.g., eleventy)
+  publish = "_site"               # Or "dist" or your correct output folder
