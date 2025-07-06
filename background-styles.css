@@ -63,7 +63,15 @@ html, body {
   position: fixed;
   inset: 0;
   z-index: 0;
-   background-image: linear-gradient(to right top, #252a73, #00488c, #00639c, #007ca6, #0095ab, #259cb4, #3aa4bd, #4aabc6, #6fa1ca, #9097c0, #a58eae, #ac899a);
+  background: linear-gradient(135deg,
+  #2e2b4f,  /* dusk violet */
+  #4e4d79,  /* twilight slate */
+  #7b86a2,  /* pale wisteria */
+  #a3b6b1,  /* fogged mint */
+  #c7cdc1,  /* dream moss */
+  #ebd9d1   /* soft clay blush */
+);
+
 }
 body > *:not(.gradient-layer) {
   position: relative;
