@@ -63,7 +63,7 @@ html, body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(#d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+   background-image: linear-gradient(to right top, #4d49ff, #007bff, #009dff, #00b9ff, #00d0f8, #23d4fa, #35d7fd, #42dbff, #7dccff, #b1bbfb, #d3acdf, #e1a2be);
 }
 body > *:not(.gradient-layer) {
   position: relative;
