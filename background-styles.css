@@ -20,15 +20,8 @@
   font-style: normal;
 }
 
-/* ========== RESET ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 /* ========== GLOBAL LAYOUT ========== */
-html, body {
+body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -41,6 +34,14 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* Background properties */
+  background-image: url('/assets/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .page-wrapper {
   display: flex;
@@ -57,27 +58,6 @@ html, body {
   text-align: center;
   z-index: 1;
 }
-
-/* ========== UNIVERSAL BACKGROUND GRADIENT ========== */
-.gradient-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: linear-gradient(135deg,
-  #2e2b4f,  /* dusk violet */
-  #4e4d79,  /* twilight slate */
-  #7b86a2,  /* pale wisteria */
-  #a3b6b1,  /* fogged mint */
-  #c7cdc1,  /* dream moss */
-  #ebd9d1   /* soft clay blush */
-);
-
-}
-body > *:not(.gradient-layer) {
-  position: relative;
-  z-index: 1;
-}
-
 /* ========== NAVIGATION BAR ========== */
 .navbar {
   text-align: center;
