@@ -14,59 +14,92 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap" rel="stylesheet" />
 
-  <!-- Inline styles for petal-shaped navigation -->
+  <!-- Inline styles for carousel card navigation -->
   <style>
-    .page-navigation {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-top: 3rem;
-      background: linear-gradient(135deg, rgba(180, 200, 255, 0.15), rgba(200, 220, 255, 0.1));
-      padding: 2rem;
-      border-radius: 2rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-      backdrop-filter: blur(12px);
-    }
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 4rem auto 2rem;
+    perspective: 1200px;
+  }
 
-    .nav-link {
-      display: inline-block;
-      padding: 1.2rem 2rem;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #1e293b;
-      font-weight: 500;
-      font-size: 1rem;
-      text-decoration: none;
-      backdrop-filter: blur(12px);
-      box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
+  .carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease;
+    position: relative;
+    height: 300px;
+  }
 
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.02);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-    }
+  .carousel-card {
+    position: absolute;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    transform: scale(0.9);
+    opacity: 0;
+    z-index: 0;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
 
-    /* Petal shape overrides */
-    .nav-link:nth-child(1) {
-      border-radius: 65% 35% 60% 40% / 50% 65% 35% 50%;
-      transform: rotate(-5deg);
-    }
-    .nav-link:nth-child(2) {
-      border-radius: 60% 40% 60% 40% / 50% 60% 40% 50%;
-      transform: rotate(2deg);
-    }
-    .nav-link:nth-child(3) {
-      border-radius: 70% 30% 55% 45% / 45% 60% 40% 55%;
-      transform: rotate(-3deg);
-    }
-    .nav-link:nth-child(4) {
-      border-radius: 58% 42% 63% 37% / 48% 62% 38% 52%;
-      transform: rotate(4deg);
-    }
-  </style>
+  .carousel-card h3 {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+  }
+
+  .carousel-card.active {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 3;
+  }
+
+  .carousel-card.left {
+    transform: translateX(-120%) scale(0.85);
+    opacity: 0.4;
+    z-index: 2;
+  }
+
+  .carousel-card.right {
+    transform: translateX(120%) scale(0.85);
+    opacity: 0.4;
+    z-index: 2;
+  }
+
+  .carousel-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 2rem;
+  }
+
+  .carousel-nav button {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 0.3s ease;
+  }
+
+  .carousel-nav button:hover {
+    background: rgba(255,255,255,0.1);
+  }
+</style>
 </head>
 
 <body class="internal">
@@ -82,12 +115,49 @@
       <p>My work is guided by a simple principle: if something isn't serving people, it's time to compost it—and cultivate something radically better.</p>
     </div>
     
-    <nav class="page-navigation">
-      <a href="/portfolio" class="nav-link">See My Work</a>
-      <a href="/contact" class="nav-link">Let's Connect</a>
-      <a href="/tools" class="nav-link">Tools & Experiments</a>
-      <a href="/writing" class="nav-link">Research & Rumination</a>
-    </nav>
+    <div class="carousel-container">
+  <div class="carousel" id="carousel">
+    <a href="/portfolio" class="carousel-card"><h3>See My Work</h3></a>
+    <a href="/contact" class="carousel-card"><h3>Let's Connect</h3></a>
+    <a href="/resources" class="carousel-card"><h3>Tools & Experiments</h3></a>
+    <a href="/downloads" class="carousel-card"><h3>Research & Rumination</h3></a>
+  </div>
+      
+  <div class="carousel-nav">
+    <button onclick="prevCard()">←</button>
+    <button onclick="nextCard()">→</button>
+  </div>
+</div>
   </main>
+  <script>
+  const cards = document.querySelectorAll('.carousel-card');
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    cards.forEach((card, index) => {
+      card.classList.remove('active', 'left', 'right');
+      if (index === currentIndex) {
+        card.classList.add('active');
+      } else if (index === (currentIndex + 1) % cards.length) {
+        card.classList.add('right');
+      } else if (index === (currentIndex - 1 + cards.length) % cards.length) {
+        card.classList.add('left');
+      }
+    });
+  }
+
+  function nextCard() {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCarousel();
+  }
+
+  function prevCard() {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateCarousel();
+  }
+
+  // Initialize
+  updateCarousel();
+</script>
 </body>
 </html>
