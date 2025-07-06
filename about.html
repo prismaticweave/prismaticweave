@@ -4,14 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Compost & Cultivate – Prismatic Weave Studio</title>
+
   <!-- Main styles -->
   <link rel="stylesheet" href="background-styles.css" />
   <link rel="stylesheet" href="landing-overrides.css" />
-  <!-- Fonts (if not already globally applied) -->
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <!-- Inline styles for page navigation -->
+  <style>
+    .page-navigation {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+      background-color: rgba(230, 240, 255, 0.5);
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-link {
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #c8d9f0;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.4);
+      color: #2f3c50;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.25s ease-in-out;
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-link:hover {
+      background-color: #dbe9ff;
+      color: #1c2b3a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
+
 <body class="internal">
   <div class="gradient-layer"></div>
   
@@ -27,16 +65,10 @@
     
     <nav class="page-navigation">
       <a href="/portfolio" class="nav-link">See My Work</a>
-<p></p>
       <a href="/contact" class="nav-link">Let's Connect</a>
-<p></p>
       <a href="/tools" class="nav-link">Tools & Experiments</a>
-<p></p>
       <a href="/writing" class="nav-link">Research & Rumination</a>
     </nav>
   </main>
-
-  <footer class="sticky-footer">
-    Cultivated by Prismatic Weave Studio, 2025
-  </footer>
 </body>
+</html>
