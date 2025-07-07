@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,54 +27,69 @@
       gap: 2rem;
     }
 
-    /* Arrow Container */
+    /* Arrow container base */
     .arrow-container {
       width: 72px;
       height: 72px;
       background: white;
       border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(173, 216, 230, 0.25),
+        inset 0 2px 8px rgba(255, 255, 255, 0.9);
       cursor: pointer;
-      transition: width 0.3s ease, box-shadow 0.3s ease;
-      box-shadow:
-        0 6px 12px rgba(173, 216, 230, 0.3),
-        0 3px 6px rgba(173, 216, 230, 0.2),
-        inset 0 3px 6px rgba(255, 255, 255, 0.7);
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: visible;
+      position: relative;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Expand container on hover */
-    .arrow-container:hover {
-      width: 100px;
+    /* Expanded container on hover */
+    .arrow-container:hover,
+    .arrow-container:focus-visible {
+      width: 130px;
       box-shadow:
-        0 10px 20px rgba(173, 216, 230, 0.5),
-        0 6px 12px rgba(173, 216, 230, 0.3),
-        inset 0 3px 6px rgba(255, 255, 255, 0.9);
+        0 14px 36px rgba(0, 0, 0, 0.15),
+        0 6px 16px rgba(173, 216, 230, 0.4),
+        inset 0 3px 10px rgba(255, 255, 255, 1);
+      outline: none;
     }
 
-    /* Arrow SVG styling and animation */
+    /* Arrow group inside container, horizontal flex */
+    .arrow-group {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      left: 0;
+      transition: left 0.4s ease;
+      user-select: none;
+    }
+
+    /* On container hover, shift arrow group so all arrows visible */
+    .arrow-container:hover .arrow-group,
+    .arrow-container:focus-visible .arrow-group {
+      left: 10px; /* shift slightly for visual balance */
+    }
+
+    /* Arrow SVG base styles */
     .arrow-svg {
-      width: 24px;
-      height: 24px;
-      stroke: #1f2937; /* dark slate */
-      stroke-width: 2.5;
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.8;
       stroke-linecap: round;
       stroke-linejoin: round;
       fill: none;
+      stroke: #374151; /* base dark gray */
       animation: none;
-      transition: stroke 0.5s ease;
-      pointer-events: none; /* prevent interfering with hover */
+      pointer-events: none;
+      transition: stroke 0.3s ease;
     }
 
-    /* On container hover: cycle arrow stroke colors */
-    .arrow-container:hover .arrow-svg {
-      animation: colorCycle 2s infinite;
-    }
-
-    /* Keyframes for arrow color cycling */
+    /* Color cycling animation for arrows */
     @keyframes colorCycle {
       0% {
         stroke: #2563eb; /* blue */
@@ -88,6 +103,31 @@
       100% {
         stroke: #2563eb;
       }
+    }
+
+    /* Animate arrows with staggered delays for continuous cycling */
+    .arrow-svg {
+      animation-name: colorCycle;
+      animation-duration: 2.4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    .arrow-svg:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .arrow-svg:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+    .arrow-svg:nth-child(3) {
+      animation-delay: 1.6s;
+    }
+
+    /* Flip arrows container for left vs right */
+    .arrow-left .arrow-group {
+      flex-direction: row-reverse;
+    }
+    .arrow-left .arrow-svg {
+      transform: scaleX(-1);
     }
 
     /* Big orb container */
@@ -213,24 +253,57 @@
     </div>
 
     <div class="orb-nav-container">
-      <!-- Left arrow -->
-      <div id="arrow-left" class="arrow-container" aria-label="Previous Orb" role="button" tabindex="0">
-        <svg class="arrow-svg" viewBox="0 0 24 24">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
+      <!-- Left arrow container -->
+      <div
+        id="arrow-left"
+        class="arrow-container arrow-left"
+        aria-label="Previous Orb"
+        role="button"
+        tabindex="0"
+      >
+        <div class="arrow-group">
+          <svg class="arrow-svg" viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+          <svg class="arrow-svg" viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+          <svg class="arrow-svg" viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </div>
       </div>
 
       <!-- Big orb container -->
-      <a id="main-orb" href="/portfolio" class="orb-container main" aria-label="Portfolio Section">
+      <a
+        id="main-orb"
+        href="/portfolio"
+        class="orb-container main"
+        aria-label="Portfolio Section"
+      >
         <div class="glow-animation"></div>
         <div class="orb-text">See My Work</div>
       </a>
 
-      <!-- Right arrow -->
-      <div id="arrow-right" class="arrow-container" aria-label="Next Orb" role="button" tabindex="0">
-        <svg class="arrow-svg" viewBox="0 0 24 24">
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
+      <!-- Right arrow container -->
+      <div
+        id="arrow-right"
+        class="arrow-container arrow-right"
+        aria-label="Next Orb"
+        role="button"
+        tabindex="0"
+      >
+        <div class="arrow-group">
+          <svg class="arrow-svg" viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+          <svg class="arrow-svg" viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+          <svg class="arrow-svg" viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </div>
       </div>
     </div>
   </main>
