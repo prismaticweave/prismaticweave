@@ -13,90 +13,127 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap" rel="stylesheet" />
 
-  <!-- Inline styles for carousel card navigation -->
+  <!-- Inline styles -->
   <style>
-  .carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 4rem auto 2rem;
-    perspective: 1200px;
-  }
-
-  .carousel {
+  /* Orb Navigation Styles */
+  .orb-nav-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.6s ease;
+    margin: 4rem auto 2rem;
+    min-height: 350px;
+  }
+
+  .orb-container {
     position: relative;
+    width: 300px;
     height: 300px;
-  }
-
-  .carousel-card {
-    position: absolute;
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1.5rem;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    color: #fff;
-    text-align: center;
-    transform: scale(0.9);
-    opacity: 0;
-    z-index: 0;
-    transition: all 0.5s ease;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .carousel-card h3 {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-  }
-
-  .carousel-card.active {
-    transform: scale(1);
-    opacity: 1;
-    z-index: 3;
-  }
-
-  .carousel-card.left {
-    transform: translateX(-120%) scale(0.85);
-    opacity: 0.4;
-    z-index: 2;
-  }
-
-  .carousel-card.right {
-    transform: translateX(120%) scale(0.85);
-    opacity: 0.4;
-    z-index: 2;
-  }
-
-  .carousel-nav {
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
-    gap: 2rem;
-  }
-
-  .carousel-nav button {
-    background: none;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    font-size: 1.1rem;
+    align-items: center;
     cursor: pointer;
-    backdrop-filter: blur(6px);
-    transition: background 0.3s ease;
+    text-decoration: none;
+    color: inherit;
   }
 
-  .carousel-nav button:hover {
-    background: rgba(255,255,255,0.1);
+  .glow-animation {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(120, 180, 255, 0.9) 0%,
+        rgba(180, 120, 255, 0.7) 25%,
+        rgba(120, 255, 180, 0.5) 50%,
+        rgba(255, 150, 200, 0.4) 75%,
+        rgba(120, 180, 255, 0.2) 90%,
+        transparent 100%);
+    animation: pulse 1.5s ease-in-out infinite;
+    z-index: 1;
+    filter: blur(16px);
+  }
+
+  @keyframes pulse {
+    0% {
+        transform: scale(0.96);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.04);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(0.96);
+        opacity: 0.6;
+    }
+  }
+
+  .orb {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 20%,
+        rgba(255, 255, 255, 0.5) 40%,
+        rgba(255, 255, 255, 0.3) 70%,
+        rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 20px 40px rgba(173, 216, 230, 0.3),
+        0 10px 20px rgba(173, 216, 230, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .orb:hover {
+    transform: scale(1.05);
+  }
+
+  .orb::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%);
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+
+  .orb::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.6) 0%,
+        transparent 100%);
+    border-radius: 50%;
+    filter: blur(1px);
+  }
+
+  .orb-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    z-index: 3;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 </style>
 </head>
@@ -114,49 +151,14 @@
       <p>My work is guided by a simple principle: if something isn't serving people, it's time to compost it—and cultivate something radically better.</p>
     </div>
     
-    <div class="carousel-container">
-  <div class="carousel" id="carousel">
-    <a href="/portfolio" class="carousel-card"><h3>See My Work</h3></a>
-    <a href="/contact" class="carousel-card"><h3>Let's Connect</h3></a>
-    <a href="/resources" class="carousel-card"><h3>Tools & Experiments</h3></a>
-    <a href="/downloads" class="carousel-card"><h3>Research & Rumination</h3></a>
-  </div>
-      
-  <div class="carousel-nav">
-    <button onclick="prevCard()">←</button>
-    <button onclick="nextCard()">→</button>
-  </div>
-</div>
+    <div class="orb-nav-container">
+      <a href="/portfolio" class="orb-container">
+        <div class="glow-animation"></div>
+        <div class="orb">
+          <div class="orb-text">See My Work</div>
+        </div>
+      </a>
+    </div>
   </main>
-  <script>
-  const cards = document.querySelectorAll('.carousel-card');
-  let currentIndex = 0;
-
-  function updateCarousel() {
-    cards.forEach((card, index) => {
-      card.classList.remove('active', 'left', 'right');
-      if (index === currentIndex) {
-        card.classList.add('active');
-      } else if (index === (currentIndex + 1) % cards.length) {
-        card.classList.add('right');
-      } else if (index === (currentIndex - 1 + cards.length) % cards.length) {
-        card.classList.add('left');
-      }
-    });
-  }
-
-  function nextCard() {
-    currentIndex = (currentIndex + 1) % cards.length;
-    updateCarousel();
-  }
-
-  function prevCard() {
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    updateCarousel();
-  }
-
-  // Initialize
-  updateCarousel();
-</script>
 </body>
 </html>
