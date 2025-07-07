@@ -2,106 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orb Carousel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compost & Cultivate – Prismatic Weave Studio</title>
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="./background-styles.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
-      overflow: hidden;
-    }
-
-    /* Central orb area */
-    .carousel-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    /* Orb Navigation Container */
+    .orb-nav-container {
       display: flex;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-      width: 100vw;
+      align-items: center;
+      margin: 6rem auto 2rem;
+      min-height: 240px;
+      gap: 2rem;
     }
 
-    .orb {
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(white 60%, #d9e9ff 100%);
+    /* Arrow Container */
+    .arrow-container {
+      width: 72px;
+      height: 72px;
+      background: white;
       border-radius: 50%;
-      box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
       display: flex;
-      align-items: center;
       justify-content: center;
-      transition: transform 0.3s ease, opacity 0.5s;
+      align-items: center;
+      cursor: pointer;
+      transition: width 0.3s ease, box-shadow 0.3s ease;
+      box-shadow:
+        0 6px 12px rgba(173, 216, 230, 0.3),
+        0 3px 6px rgba(173, 216, 230, 0.2),
+        inset 0 3px 6px rgba(255, 255, 255, 0.7);
+      position: relative;
+      overflow: visible;
+    }
+
+    /* Expand container on hover */
+    .arrow-container:hover {
+      width: 100px;
+      box-shadow:
+        0 10px 20px rgba(173, 216, 230, 0.5),
+        0 6px 12px rgba(173, 216, 230, 0.3),
+        inset 0 3px 6px rgba(255, 255, 255, 0.9);
+    }
+
+    /* Arrow SVG styling and animation */
+    .arrow-svg {
+      width: 24px;
+      height: 24px;
+      stroke: #1f2937; /* dark slate */
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      animation: none;
+      transition: stroke 0.5s ease;
+      pointer-events: none; /* prevent interfering with hover */
+    }
+
+    /* On container hover: cycle arrow stroke colors */
+    .arrow-container:hover .arrow-svg {
+      animation: colorCycle 2s infinite;
+    }
+
+    /* Keyframes for arrow color cycling */
+    @keyframes colorCycle {
+      0% {
+        stroke: #2563eb; /* blue */
+      }
+      33% {
+        stroke: #10b981; /* green */
+      }
+      66% {
+        stroke: #f59e0b; /* amber */
+      }
+      100% {
+        stroke: #2563eb;
+      }
+    }
+
+    /* Big orb container */
+    .orb-container.main {
+      width: 240px;
+      height: 240px;
+      position: relative;
       cursor: pointer;
       text-decoration: none;
-    }
-
-    .orb.hidden {
-      opacity: 0;
-      pointer-events: none;
-      position: absolute;
-    }
-
-    /* Arrow navs */
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 100;
-    }
-
-    .nav-arrow.left {
-      left: 2vw;
-    }
-
-    .nav-arrow.right {
-      right: 2vw;
-    }
-
-    .orb-arrow {
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(white 60%, #d9e9ff 100%);
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      color: inherit;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       transition: transform 0.3s ease;
-    }
-
-    .orb-arrow:hover {
-      transform: scale(1.05);
-    }
-
-    .arrow-btn {
-      background: transparent;
-      border: none;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .icon-arrow svg {
-      width: 30px;
-      height: 30px;
-    }
-
-    /* Arrow Animations */
-    #arrow-icon-one {
-      transition: 0.4s;
-      transform: translateX(-60%);
-    }
-
-    #arrow-icon-two {
-      transition: 0.5s;
-      transform: translateX(-30%);
-    }
-
-    .arrow-btn:hover #arrow-i
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 20%,
+        rgba(255, 255, 255, 0.5) 40%,
+        rgba(255, 255, 255, 0.3) 70%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        0 16px 32px rgba(173, 216, 230, 0.3),
+        0 8px 16px rgba(173, 216, 230, 0.2),
+        ins
