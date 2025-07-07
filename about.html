@@ -7,235 +7,338 @@
   <link rel="stylesheet" href="./background-styles.css" />
 
   <style>
-    /* === ALL YOUR CSS CLEANED UP === */
+    /* Container holds everything centered */
+.orb-nav-container {
+  position: relative;
+  width: 300px;
+  height: 240px;
+  margin: 6rem auto 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .orb-nav-container {
-      position: relative;
-      width: 300px;
-      height: 240px;
-      margin: 6rem auto 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* Big orb in center */
+.orb-container.main {
+  position: relative;
+  z-index: 2;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-    .orb-container.main {
-      position: relative;
-      z-index: 2;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
+.main .glow-animation {
+  position: absolute;
+  width: 256px;
+  height: 256px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.4) 75%,
+    rgba(255, 255, 255, 0.2) 90%,
+    transparent 100%
+  );
+  animation: pulse 2.5s ease-in-out infinite;
+  z-index: 1;
+  filter: blur(16px);
+  top: -8px;
+  left: -8px;
+}
 
-    .main .glow-animation {
-      position: absolute;
-      width: 256px;
-      height: 256px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 25%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.4) 75%, rgba(255,255,255,0.2) 90%, transparent 100%);
-      animation: pulse 2.5s ease-in-out infinite;
-      z-index: 1;
-      filter: blur(16px);
-      top: -8px;
-      left: -8px;
-    }
+.main .orb {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 20%,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.3) 70%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 16px 32px rgba(173, 216, 230, 0.3),
+    0 8px 16px rgba(173, 216, 230, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
 
-    .main .orb {
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.1) 100%);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.3);
-      box-shadow: 0 16px 32px rgba(173,216,230,0.3), 0 8px 16px rgba(173,216,230,0.2), inset 0 2px 4px rgba(255,255,255,0.3);
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s ease;
-    }
+.main .orb:hover {
+  transform: scale(1.05);
+}
 
-    .main .orb:hover {
-      transform: scale(1.05);
-    }
+/* Arrow container base style */
+.arrow-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(173, 216, 230, 0.25),
+    inset 0 2px 8px rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  padding: 0 4px;
+}
 
-    .arrow-container {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 50px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1), 0 2px 8px rgba(173,216,230,0.25), inset 0 2px 8px rgba(255,255,255,0.9);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 3;
-      padding: 0 4px;
-    }
+/* Left arrow container positioning */
+.arrow-left {
+  left: -85px;
+  top: 75%; /* Lower position */
+}
 
-    .arrow-left {
-      left: -85px;
-      top: 75%;
-    }
+/* Right arrow container positioning */
+.arrow-right {
+  right: -85px;
+  top: 75%; /* Lower position */
+}
 
-    .arrow-right {
-      right: -85px;
-      top: 75%;
-    }
+/* Hover expansion - extends away from center only */
+.arrow-left:hover {
+  width: 120px;
+  border-radius: 60px;
+  padding: 0 8px;
+  transform: translateY(-50%) translateX(-48px); /* Extends only left (width difference) */
+}
 
-    .arrow-left:hover {
-      width: 120px;
-      border-radius: 60px;
-      padding: 0 8px;
-      transform: translateY(-50%) translateX(-48px);
-    }
+.arrow-right:hover {
+  width: 120px;
+  border-radius: 60px;
+  padding: 0 8px;
+  transform: translateY(-50%) translateX(48px); /* Extends only right (width difference) */
+}
 
-    .arrow-right:hover {
-      width: 120px;
-      border-radius: 60px;
-      padding: 0 8px;
-      transform: translateY(-50%) translateX(48px);
-    }
+/* Arrow group container - to tightly bundle arrows horizontally */
+.arrow-group {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: all 0.5s ease;
+}
 
-    .arrow-group {
-      display: flex;
-      gap: 2px;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      transition: all 0.5s ease;
-    }
+/* On hover, spread out the arrows more */
+.arrow-container:hover .arrow-group {
+  gap: 0px;
+  animation: colorFlowHover 4s ease-in-out infinite;
+}
 
-    .arrow-container:hover .arrow-group {
-      gap: 0px;
-      animation: colorFlowHover 4s ease-in-out infinite;
-    }
+/* Each arrow - base styles */
+.arrow {
+  width: 20px;
+  height: 20px;
+  stroke: #0c4a6e;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  animation: colorFlow 1.2s linear infinite;
+  animation-fill-mode: forwards;
+  transition: all 0.7s ease;
+  opacity: 0.7;
+  margin-left: -8px;
+}
 
-    .arrow {
-      width: 20px;
-      height: 20px;
-      stroke: #0c4a6e;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-      animation: colorFlow 1.2s linear infinite;
-      animation-fill-mode: forwards;
-      transition: all 0.7s ease;
-      opacity: 0.7;
-      margin-left: -8px;
-    }
+/* Hide outer arrows initially - slide them in from the sides */
+.arrow:nth-child(1) {
+  --delay: 0s;
+  transform: translateX(-10px);
+  opacity: 0;
+  animation-delay: 0s;
+}
 
-    .arrow:nth-child(1) {
-      --delay: 0s;
-      transform: translateX(-10px);
-      opacity: 0;
-      animation-delay: 0s;
-    }
+.arrow:nth-child(2) {
+  --delay: 0.3s;
+  transform: translateX(0);
+  opacity: 1;
+  animation-delay: 0.3s;
+}
 
-    .arrow:nth-child(2) {
-      --delay: 0.3s;
-      transform: translateX(0);
-      opacity: 1;
-      animation-delay: 0.3s;
-    }
+.arrow:nth-child(3) {
+  --delay: 0.6s;
+  transform: translateX(10px);
+  opacity: 0;
+  animation-delay: 0.6s;
+}
 
-    .arrow:nth-child(3) {
-      --delay: 0.6s;
-      transform: translateX(10px);
-      opacity: 0;
-      animation-delay: 0.6s;
-    }
+/* On hover, slide all arrows into view */
+.arrow-container:hover .arrow:nth-child(1) {
+  transform: translateX(0);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
 
-    .arrow-container:hover .arrow:nth-child(1),
-    .arrow-container:hover .arrow:nth-child(2),
-    .arrow-container:hover .arrow:nth-child(3) {
-      transform: translateX(0) scale(1.05);
-      opacity: 1;
-    }
+.arrow-container:hover .arrow:nth-child(2) {
+  transform: translateX(0);
+  opacity: 1;
+}
 
-    .arrow-container:hover .arrow {
-      animation: colorFlowHover 0.8s ease-in-out infinite;
-    }
+.arrow-container:hover .arrow:nth-child(3) {
+  transform: translateX(0);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
 
-    .arrow-left .arrow {
-      transform: scaleX(-1);
-    }
+/* Keyframe for smooth color cycling */
+@keyframes colorFlow {
+  0% {
+    stroke: #0c4a6e;
+  }
+  25% {
+    stroke: #3b82f6;
+  }
+  50% {
+    stroke: #22d3ee;
+  }
+  75% {
+    stroke: #0c4a6e;
+  }
+  100% {
+    stroke: #0c4a6e;
+  }
+}
 
-    .arrow-left:hover .arrow:nth-child(1) {
-      animation-delay: 0.4s;
-    }
-    .arrow-left:hover .arrow:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    .arrow-left:hover .arrow:nth-child(3) {
-      animation-delay: 0s;
-    }
+/* Hover effects for arrow containers */
+.arrow-container:hover .arrow {
+  animation: colorFlowHover 0.8s ease-in-out infinite;
+}
 
-    .arrow-right:hover .arrow:nth-child(1),
-    .arrow-right:hover .arrow:nth-child(3) {
-      transition-delay: 0.1s;
-    }
+.arrow-container:hover .arrow:nth-child(1) {
+  animation-delay: 0s;
+}
 
-    @keyframes colorFlow {
-      0%, 75%, 100% {
-        stroke: #0c4a6e;
-      }
-      25% {
-        stroke: #3b82f6;
-      }
-      50% {
-        stroke: #22d3ee;
-      }
-    }
+.arrow-container:hover .arrow:nth-child(2) {
+  animation-delay: 0.2s;
+}
 
-    @keyframes colorFlowHover {
-      0% {
-        stroke: #0c4a6e;
-      }
-      33% {
-        stroke: #3b82f6;
-      }
-      66% {
-        stroke: #22d3ee;
-      }
-      100% {
-        stroke: #0c4a6e;
-      }
-    }
+.arrow-container:hover .arrow:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(0.96);
-        opacity: 0.6;
-      }
-      50% {
-        transform: scale(1.04);
-        opacity: 0.9;
-      }
-    }
+/* Enhanced color flow animation for hover */
+@keyframes colorFlowHover {
+  0% {
+    stroke: #0c4a6e;
+  }
+  33% {
+    stroke: #3b82f6;
+  }
+  66% {
+    stroke: #22d3ee;
+  }
+  100% {
+    stroke: #0c4a6e;
+  }
+}
 
-    .orb-text {
-      font-family: "Squarish", sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: rgb(32, 36, 39);
-      text-align: center;
-      z-index: 3;
-      position: relative;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
+/* Left arrows need special handling for the slide-in effect */
+.arrow-left .arrow:nth-child(1) {
+  transform: translateX(-10px);
+  opacity: 0;
+  animation-delay: 0.6s;
+}
 
-    .orb-container:not(.selected) .orb-text {
-      display: none;
-    }
+.arrow-left .arrow:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.arrow-left .arrow:nth-child(3) {
+  transform: translateX(10px);
+  opacity: 0;
+  animation-delay: 0s;
+}
+
+.arrow-left:hover .arrow:nth-child(1) {
+  transform: translateX(0) scale(1.05);
+  opacity: 1;
+  transition-delay: 0.1s;
+  animation-delay: 0.4s;
+}
+
+.arrow-left:hover .arrow:nth-child(2) {
+  transform: translateX(0) scale(1.05);
+  opacity: 1;
+  animation-delay: 0.2s;
+}
+
+.arrow-left:hover .arrow:nth-child(3) {
+  transform: translateX(0) scale(1.05);
+  opacity: 1;
+  transition-delay: 0.1s;
+  animation-delay: 0s;
+}
+
+.arrow-right:hover .arrow:nth-child(1) {
+  transform: translateX(0) scale(1.05);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.arrow-right:hover .arrow:nth-child(2) {
+  transform: translateX(0) scale(1.05);
+  opacity: 1;
+}
+
+.arrow-right:hover .arrow:nth-child(3) {
+  transform: translateX(0) scale(1.05);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+/* Big orb text styles */
+.orb-text {
+  font-family: "Squarish", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(32, 36, 39);
+  text-align: center;
+  z-index: 3;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Text only shows on selected orb */
+.orb-container:not(.selected) .orb-text {
+  display: none;
+}
+
+/* Pulsing glow for main orb */
+@keyframes pulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(0.96);
+    opacity: 0.6;
+  }
+}
   </style>
 </head>
 
@@ -243,9 +346,15 @@
   <div class="orb-nav-container">
     <a href="/about" class="arrow-container arrow-left" aria-label="Navigate to About">
       <div class="arrow-group" role="presentation">
-        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6" /></svg>
-        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6" /></svg>
-        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6" /></svg>
+        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </div>
     </a>
 
@@ -258,9 +367,15 @@
 
     <a href="/contact" class="arrow-container arrow-right" aria-label="Navigate to Contact">
       <div class="arrow-group" role="presentation">
-        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="9 6 15 12 9 18" /></svg>
-        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="9 6 15 12 9 18" /></svg>
-        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="9 6 15 12 9 18" /></svg>
+        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
+        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
+        <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
       </div>
     </a>
   </div>
