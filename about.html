@@ -22,12 +22,11 @@
     align-items: center;
     margin: 6rem auto 2rem;
     min-height: 240px;
+    gap: 3rem;
   }
 
   .orb-container {
     position: relative;
-    width: 240px;
-    height: 240px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +35,13 @@
     color: inherit;
   }
 
-  .glow-animation {
+  /* Main orb styles */
+  .orb-container.main {
+    width: 240px;
+    height: 240px;
+  }
+
+  .main .glow-animation {
     position: absolute;
     width: 256px;
     height: 256px;
@@ -53,22 +58,7 @@
     filter: blur(16px);
   }
 
-  @keyframes pulse {
-    0% {
-        transform: scale(0.96);
-        opacity: 0.6;
-    }
-    50% {
-        transform: scale(1.04);
-        opacity: 0.9;
-    }
-    100% {
-        transform: scale(0.96);
-        opacity: 0.6;
-    }
-  }
-
-  .orb {
+  .main .orb {
     width: 240px;
     height: 240px;
     border-radius: 50%;
@@ -92,11 +82,11 @@
     transition: transform 0.3s ease;
   }
 
-  .orb:hover {
+  .main .orb:hover {
     transform: scale(1.05);
   }
 
-  .orb::before {
+  .main .orb::before {
     content: '';
     position: absolute;
     top: 15%;
@@ -111,7 +101,7 @@
     filter: blur(2px);
   }
 
-  .orb::after {
+  .main .orb::after {
     content: '';
     position: absolute;
     top: 30%;
@@ -125,6 +115,100 @@
     filter: blur(1px);
   }
 
+  /* Pearl-sized orb styles */
+  .orb-container.pearl {
+    width: 72px;
+    height: 72px;
+    align-self: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .pearl .glow-animation {
+    position: absolute;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 25%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.4) 75%,
+        rgba(255, 255, 255, 0.2) 90%,
+        transparent 100%);
+    animation: pulse 2.5s ease-in-out infinite;
+    z-index: 1;
+    filter: blur(6px);
+  }
+
+  .pearl .orb {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 20%,
+        rgba(255, 255, 255, 0.5) 40%,
+        rgba(255, 255, 255, 0.3) 70%,
+        rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 6px 12px rgba(173, 216, 230, 0.3),
+        0 3px 6px rgba(173, 216, 230, 0.2),
+        inset 0 3px 6px rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+
+  .pearl .orb:hover {
+    transform: scale(1.2);
+  }
+
+  .pearl .orb::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%);
+    border-radius: 50%;
+    filter: blur(1.5px);
+  }
+
+  .pearl .orb::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.6) 0%,
+        transparent 100%);
+    border-radius: 50%;
+    filter: blur(0.9px);
+  }
+
+  @keyframes pulse {
+    0% {
+        transform: scale(0.96);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.04);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(0.96);
+        opacity: 0.6;
+    }
+  }
+
   .orb-text {
     font-family: 'Squarish', sans-serif;
     font-size: 1.5rem;
@@ -134,6 +218,11 @@
     z-index: 3;
     position: relative;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Text only shows on selected orb */
+  .orb-container:not(.selected) .orb-text {
+    display: none;
   }
 </style>
 </head>
@@ -152,10 +241,24 @@
     </div>
     
     <div class="orb-nav-container">
-      <a href="/portfolio" class="orb-container">
+      <a href="/about" class="orb-container pearl">
+        <div class="glow-animation"></div>
+        <div class="orb">
+          <div class="orb-text">About</div>
+        </div>
+      </a>
+      
+      <a href="/portfolio" class="orb-container main selected">
         <div class="glow-animation"></div>
         <div class="orb">
           <div class="orb-text">See My Work</div>
+        </div>
+      </a>
+      
+      <a href="/contact" class="orb-container pearl">
+        <div class="glow-animation"></div>
+        <div class="orb">
+          <div class="orb-text">Contact</div>
         </div>
       </a>
     </div>
