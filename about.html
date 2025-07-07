@@ -3,23 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orb Navigation</title>
+  <title>Orb Carousel</title>
   <style>
     body {
-      background-color: #000; /* Dark background for contrast */
       margin: 0;
       padding: 0;
-      overflow: hidden;
       font-family: sans-serif;
+      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+      overflow: hidden;
     }
 
-    /* ORB BASE STYLES */
-    .orb-container {
+    /* Central orb area */
+    .carousel-container {
       position: absolute;
-      z-index: 10;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
     }
 
     .orb {
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(white 60%, #d9e9ff 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, opacity 0.5s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .orb.hidden {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    /* Arrow navs */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+
+    .nav-arrow.left {
+      left: 2vw;
+    }
+
+    .nav-arrow.right {
+      right: 2vw;
+    }
+
+    .orb-arrow {
       width: 80px;
       height: 80px;
       background: radial-gradient(white 60%, #d9e9ff 100%);
@@ -31,7 +74,7 @@
       transition: transform 0.3s ease;
     }
 
-    .orb:hover {
+    .orb-arrow:hover {
       transform: scale(1.05);
     }
 
@@ -42,27 +85,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
 
-    .icon-arrow {
-      margin: 0;
-      transform: scale(0.8);
+    .icon-arrow svg {
+      width: 30px;
+      height: 30px;
     }
 
-    /* Position left and right */
-    .nav-arrow.left {
-      left: 3vw;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .nav-arrow.right {
-      right: 3vw;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    /* Initial transform for arrow segments */
+    /* Arrow Animations */
     #arrow-icon-one {
       transition: 0.4s;
       transform: translateX(-60%);
@@ -73,69 +104,4 @@
       transform: translateX(-30%);
     }
 
-    /* Hover animation to bring arrows in and animate colors */
-    .arrow-btn:hover #arrow-icon-one {
-      transform: translateX(0%);
-      animation: color_anim 1s infinite 0.6s;
-    }
-
-    .arrow-btn:hover #arrow-icon-two {
-      transform: translateX(0%);
-      animation: color_anim 1s infinite 0.4s;
-    }
-
-    .arrow-btn:hover #arrow-icon-three {
-      animation: color_anim 1s infinite 0.2s;
-    }
-
-    @keyframes color_anim {
-      0% {
-        fill: white;
-      }
-      50% {
-        fill: rgba(255, 255, 255, 0.5);
-      }
-      100% {
-        fill: #9ee5fa;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- LEFT ARROW -->
-  <a href="/about" class="orb-container nav-arrow left">
-    <div class="orb">
-      <div class="arrow-btn">
-        <span class="icon-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 43" width="30" height="30">
-            <g fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="arrow">
-              <path fill="#9ee5fa" d="M40.1543933,3.89485454 C39.2916678,3.03212909 37.8708176,3.03212909 37.0080921,3.89485454 L16.1543933,24.7485533 C15.2916678,25.6112788 15.2916678,27.032129 16.1543933,27.8948545 L37.0080921,48.7485533 C37.8708176,49.6112788 39.2916678,49.6112788 40.1543933,48.7485533 C41.0171188,47.8858278 41.0171188,46.4649776 40.1543933,45.6022521 L20.706641,26.1544998 L40.1543933,6.70674746 C41.0171188,5.84402197 41.0171188,4.42317179 40.1543933,3.89485454 Z" id="arrow-icon-one"></path>
-              <path fill="#9ee5fa" d="M20.1543933,3.89485454 C19.2916678,3.03212909 17.8708176,3.03212909 17.0080921,3.89485454 L-3.84560668,24.7485533 C-4.70833213,25.6112788 -4.70833213,27.032129 -3.84560668,27.8948545 L17.0080921,48.7485533 C17.8708176,49.6112788 19.2916678,49.6112788 20.1543933,48.7485533 C21.0171188,47.8858278 21.0171188,46.4649776 20.1543933,45.6022521 L0.70664103,26.1544998 L20.1543933,6.70674746 C21.0171188,5.84402197 21.0171188,4.42317179 20.1543933,3.89485454 Z" id="arrow-icon-two"></path>
-              <path fill="#9ee5fa" d="M0.154393339,3.89485454 C-0.708332116,3.03212909 -2.1291823,3.03212909 -2.99190775,3.89485454 L-23.8456067,24.7485533 C-24.7083321,25.6112788 -24.7083321,27.032129 -23.8456067,27.8948545 L-2.99190775,48.7485533 C-2.1291823,49.6112788 -0.708332116,49.6112788 0.154393339,48.7485533 C1.01711879,47.8858278 1.01711879,46.4649776 0.154393339,45.6022521 L-19.293359,26.1544998 L0.154393339,6.70674746 C1.01711879,5.84402197 1.01711879,4.42317179 0.154393339,3.89485454 Z" id="arrow-icon-three"></path>
-            </g>
-          </svg>
-        </span>
-      </div>
-    </div>
-  </a>
-
-  <!-- RIGHT ARROW -->
-  <a href="/contact" class="orb-container nav-arrow right">
-    <div class="orb">
-      <div class="arrow-btn">
-        <span class="icon-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 43" width="30" height="30" style="transform: rotate(180deg);">
-            <g fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="arrow">
-              <path fill="#9ee5fa" d="M40.1543933,3.89485454 C39.2916678,3.03212909 37.8708176,3.03212909 37.0080921,3.89485454 L16.1543933,24.7485533 C15.2916678,25.6112788 15.2916678,27.032129 16.1543933,27.8948545 L37.0080921,48.7485533 C37.8708176,49.6112788 39.2916678,49.6112788 40.1543933,48.7485533 C41.0171188,47.8858278 41.0171188,46.4649776 40.1543933,45.6022521 L20.706641,26.1544998 L40.1543933,6.70674746 C41.0171188,5.84402197 41.0171188,4.42317179 40.1543933,3.89485454 Z" id="arrow-icon-one"></path>
-              <path fill="#9ee5fa" d="M20.1543933,3.89485454 C19.2916678,3.03212909 17.8708176,3.03212909 17.0080921,3.89485454 L-3.84560668,24.7485533 C-4.70833213,25.6112788 -4.70833213,27.032129 -3.84560668,27.8948545 L17.0080921,48.7485533 C17.8708176,49.6112788 19.2916678,49.6112788 20.1543933,48.7485533 C21.0171188,47.8858278 21.0171188,46.4649776 20.1543933,45.6022521 L0.70664103,26.1544998 L20.1543933,6.70674746 C21.0171188,5.84402197 21.0171188,4.42317179 20.1543933,3.89485454 Z" id="arrow-icon-two"></path>
-              <path fill="#9ee5fa" d="M0.154393339,3.89485454 C-0.708332116,3.03212909 -2.1291823,3.03212909 -2.99190775,3.89485454 L-23.8456067,24.7485533 C-24.7083321,25.6112788 -24.7083321,27.032129 -23.8456067,27.8948545 L-2.99190775,48.7485533 C-2.1291823,49.6112788 -0.708332116,49.6112788 0.154393339,48.7485533 C1.01711879,47.8858278 1.01711879,46.4649776 0.154393339,45.6022521 L-19.293359,26.1544998 L0.154393339,6.70674746 C1.01711879,5.84402197 1.01711879,4.42317179 0.154393339,3.89485454 Z" id="arrow-icon-three"></path>
-            </g>
-          </svg>
-        </span>
-      </div>
-    </div>
-  </a>
-
-</body>
-</html>
+    .arrow-btn:hover #arrow-i
