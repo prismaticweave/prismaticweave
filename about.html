@@ -116,4 +116,175 @@
       box-shadow:
         0 16px 32px rgba(173, 216, 230, 0.3),
         0 8px 16px rgba(173, 216, 230, 0.2),
-        ins
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      z-index: 2;
+    }
+
+    .orb-container.main:hover {
+      transform: scale(1.05);
+    }
+
+    .glow-animation {
+      position: absolute;
+      width: 256px;
+      height: 256px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 25%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.4) 75%,
+        rgba(255, 255, 255, 0.2) 90%,
+        transparent 100%
+      );
+      animation: pulse 2.5s ease-in-out infinite;
+      z-index: 1;
+      filter: blur(16px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.96) translate(-50%, -50%);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.04) translate(-50%, -50%);
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(0.96) translate(-50%, -50%);
+        opacity: 0.6;
+      }
+    }
+
+    .orb-text {
+      font-family: 'Spline Sans Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: rgb(32, 36, 39);
+      text-align: center;
+      z-index: 3;
+      position: relative;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Hide all orb text by default */
+    .orb-text.hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="internal">
+  <div class="gradient-layer"></div>
+
+  <main class="content">
+    <h1 class="page-title">Compost & Cultivate</h1>
+    <h2 class="page-subtitle">
+      A personal framework for digital agency and creative resistance.
+    </h2>
+
+    <div class="page-summary">
+      <p>
+        I'm Killian—a creative technologist working at the intersection of
+        ethical design, speculative systems, and boundless curiosity. I build
+        tools, experiences, and frameworks that challenge the assumptions of
+        dominant systems and carve out space for others to create, reclaim, or
+        exist.
+      </p>
+      <p>
+        My background spans narrative structure, technical implementation, and
+        digital privacy—all grounded in an unwavering commitment to help
+        others. I care deeply about empowering people to navigate, fortify,
+        and reshape their digital environments—whether through accessible
+        privacy tools, vibrant storytelling, or purpose-driven experimentation.
+      </p>
+      <p>
+        My work is guided by a simple principle: if something isn't serving
+        people, it's time to compost it—and cultivate something radically
+        better.
+      </p>
+    </div>
+
+    <div class="orb-nav-container">
+      <!-- Left arrow -->
+      <div id="arrow-left" class="arrow-container" aria-label="Previous Orb" role="button" tabindex="0">
+        <svg class="arrow-svg" viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </div>
+
+      <!-- Big orb container -->
+      <a id="main-orb" href="/portfolio" class="orb-container main" aria-label="Portfolio Section">
+        <div class="glow-animation"></div>
+        <div class="orb-text">See My Work</div>
+      </a>
+
+      <!-- Right arrow -->
+      <div id="arrow-right" class="arrow-container" aria-label="Next Orb" role="button" tabindex="0">
+        <svg class="arrow-svg" viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Orb data: link + label
+    const orbs = [
+      { href: '/about', label: 'About' },
+      { href: '/portfolio', label: 'See My Work' },
+      { href: '/contact', label: 'Contact' },
+    ];
+
+    let currentIndex = 1; // Start at 'See My Work' as in your original
+
+    const mainOrb = document.getElementById('main-orb');
+    const orbText = mainOrb.querySelector('.orb-text');
+    const arrowLeft = document.getElementById('arrow-left');
+    const arrowRight = document.getElementById('arrow-right');
+
+    // Function to update orb content
+    function updateOrb() {
+      const currentOrb = orbs[currentIndex];
+      mainOrb.href = currentOrb.href;
+      orbText.textContent = currentOrb.label;
+    }
+
+    // Navigation handlers
+    arrowLeft.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + orbs.length) % orbs.length;
+      updateOrb();
+    });
+
+    arrowRight.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % orbs.length;
+      updateOrb();
+    });
+
+    // Keyboard accessibility for arrows
+    arrowLeft.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        arrowLeft.click();
+      }
+    });
+
+    arrowRight.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        arrowRight.click();
+      }
+    });
+
+    // Initialize on load
+    updateOrb();
+  </script>
+</body>
+</html>
