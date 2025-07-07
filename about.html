@@ -1,170 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Compost & Cultivate – Prismatic Weave Studio</title>
 
-  <!-- Main styles -->
   <link rel="stylesheet" href="./background-styles.css" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Spline+Sans+Mono:wght@500&display=swap"
     rel="stylesheet"
   />
 
   <style>
-    /* Orb Navigation Container */
+    /* Container holds everything centered */
     .orb-nav-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: relative;
+      width: 300px;
+      height: 240px;
       margin: 6rem auto 2rem;
-      min-height: 240px;
-      gap: 2rem;
-    }
-
-    /* Arrow container base */
-    .arrow-container {
-      width: 72px;
-      height: 72px;
-      background: white;
-      border-radius: 50%;
-      box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.1),
-        0 2px 8px rgba(173, 216, 230, 0.25),
-        inset 0 2px 8px rgba(255, 255, 255, 0.9);
-      cursor: pointer;
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow: visible;
-      position: relative;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Expanded container on hover */
-    .arrow-container:hover,
-    .arrow-container:focus-visible {
-      width: 130px;
-      box-shadow:
-        0 14px 36px rgba(0, 0, 0, 0.15),
-        0 6px 16px rgba(173, 216, 230, 0.4),
-        inset 0 3px 10px rgba(255, 255, 255, 1);
-      outline: none;
-    }
-
-    /* Arrow group inside container, horizontal flex */
-    .arrow-group {
-      display: flex;
-      gap: 12px;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      left: 0;
-      transition: left 0.4s ease;
-      user-select: none;
     }
 
-    /* On container hover, shift arrow group so all arrows visible */
-    .arrow-container:hover .arrow-group,
-    .arrow-container:focus-visible .arrow-group {
-      left: 10px; /* shift slightly for visual balance */
-    }
-
-    /* Arrow SVG base styles */
-    .arrow-svg {
-      width: 20px;
-      height: 20px;
-      stroke-width: 2.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-      stroke: #374151; /* base dark gray */
-      animation: none;
-      pointer-events: none;
-      transition: stroke 0.3s ease;
-    }
-
-    /* Color cycling animation for arrows */
-    @keyframes colorCycle {
-      0% {
-        stroke: #2563eb; /* blue */
-      }
-      33% {
-        stroke: #10b981; /* green */
-      }
-      66% {
-        stroke: #f59e0b; /* amber */
-      }
-      100% {
-        stroke: #2563eb;
-      }
-    }
-
-    /* Animate arrows with staggered delays for continuous cycling */
-    .arrow-svg {
-      animation-name: colorCycle;
-      animation-duration: 2.4s;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear;
-    }
-    .arrow-svg:nth-child(1) {
-      animation-delay: 0s;
-    }
-    .arrow-svg:nth-child(2) {
-      animation-delay: 0.8s;
-    }
-    .arrow-svg:nth-child(3) {
-      animation-delay: 1.6s;
-    }
-
-    /* Flip arrows container for left vs right */
-    .arrow-left .arrow-group {
-      flex-direction: row-reverse;
-    }
-    .arrow-left .arrow-svg {
-      transform: scaleX(-1);
-    }
-
-    /* Big orb container */
+    /* Big orb in center */
     .orb-container.main {
+      position: relative;
+      z-index: 2;
       width: 240px;
       height: 240px;
-      position: relative;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s ease;
       border-radius: 50%;
-      background: radial-gradient(
-        circle at 30% 30%,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(255, 255, 255, 0.7) 20%,
-        rgba(255, 255, 255, 0.5) 40%,
-        rgba(255, 255, 255, 0.3) 70%,
-        rgba(255, 255, 255, 0.1) 100%
-      );
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow:
-        0 16px 32px rgba(173, 216, 230, 0.3),
-        0 8px 16px rgba(173, 216, 230, 0.2),
-        inset 0 2px 4px rgba(255, 255, 255, 0.3);
-      z-index: 2;
+      cursor: pointer;
     }
 
-    .orb-container.main:hover {
-      transform: scale(1.05);
-    }
-
-    .glow-animation {
+    .main .glow-animation {
       position: absolute;
       width: 256px;
       height: 256px;
@@ -181,28 +50,160 @@
       animation: pulse 2.5s ease-in-out infinite;
       z-index: 1;
       filter: blur(16px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
 
-    @keyframes pulse {
+    .main .orb {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 20%,
+        rgba(255, 255, 255, 0.5) 40%,
+        rgba(255, 255, 255, 0.3) 70%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        0 16px 32px rgba(173, 216, 230, 0.3),
+        0 8px 16px rgba(173, 216, 230, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .main .orb:hover {
+      transform: scale(1.05);
+    }
+
+    /* Arrow container base style */
+    .arrow-container {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 72px;
+      height: 72px;
+      background: white;
+      border-radius: 50%;
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(173, 216, 230, 0.25),
+        inset 0 2px 8px rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 3;
+      padding: 0 4px; /* small horizontal padding for arrow grouping */
+    }
+
+    /* Left arrow container */
+    .arrow-left {
+      left: -85px;
+      flex-direction: row-reverse; /* arrows appear right-to-left */
+    }
+
+    /* Flip arrows inside left container horizontally */
+    .arrow-left svg {
+      transform: scaleX(-1);
+    }
+
+    /* Right arrow container */
+    .arrow-right {
+      right: -85px;
+    }
+
+    /* Expand container on hover */
+    .arrow-container:hover,
+    .arrow-container:focus-visible {
+      width: 130px;
+      box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.15),
+        0 6px 16px rgba(173, 216, 230, 0.4),
+        inset 0 3px 10px rgba(255, 255, 255, 1);
+      outline: none;
+    }
+
+    /* Arrow group container - to tightly bundle arrows horizontally */
+    .arrow-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Each arrow */
+    .arrow {
+      width: 16px;
+      height: 16px;
+      stroke: #0c4a6e;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
+      animation: colorFlow 3s linear infinite;
+      animation-fill-mode: forwards;
+      /* stagger animation via CSS variables */
+      animation-delay: var(--delay);
+    }
+
+    /* Stagger delays for smooth cycling */
+    .arrow:nth-child(1) {
+      --delay: 0s;
+    }
+    .arrow:nth-child(2) {
+      --delay: 1s;
+    }
+    .arrow:nth-child(3) {
+      --delay: 2s;
+    }
+
+    /* Keyframe for smooth color cycling */
+    @keyframes colorFlow {
       0% {
-        transform: scale(0.96) translate(-50%, -50%);
-        opacity: 0.6;
+        stroke: #0c4a6e;
+        filter: drop-shadow(0 0 1px rgba(12, 74, 110, 0.9));
+      }
+      25% {
+        stroke: #3b82f6; /* bright blue */
+        filter: drop-shadow(0 0 5px #3b82f6);
       }
       50% {
-        transform: scale(1.04) translate(-50%, -50%);
-        opacity: 0.9;
+        stroke: #22d3ee; /* cyan */
+        filter: drop-shadow(0 0 8px #22d3ee);
+      }
+      75% {
+        stroke: #0c4a6e;
+        filter: drop-shadow(0 0 1px rgba(12, 74, 110, 0.9));
       }
       100% {
-        transform: scale(0.96) translate(-50%, -50%);
-        opacity: 0.6;
+        stroke: #0c4a6e;
+        filter: drop-shadow(0 0 1px rgba(12, 74, 110, 0.9));
       }
     }
 
+    /* Hover scaling for arrows */
+    .arrow-container:hover .arrow {
+      animation-play-state: paused;
+      stroke: #2563eb !important; /* brighter blue */
+      filter: drop-shadow(0 0 10px #2563eb) !important;
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+    }
+
+    /* Big orb text styles */
     .orb-text {
-      font-family: 'Spline Sans Mono', monospace;
+      font-family: "Squarish", sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
       color: rgb(32, 36, 39);
@@ -210,13 +211,27 @@
       z-index: 3;
       position: relative;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      user-select: none;
-      pointer-events: none;
     }
 
-    /* Hide all orb text by default */
-    .orb-text.hidden {
+    /* Text only shows on selected orb */
+    .orb-container:not(.selected) .orb-text {
       display: none;
+    }
+
+    /* Pulsing glow for main orb */
+    @keyframes pulse {
+      0% {
+        transform: scale(0.96);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.04);
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(0.96);
+        opacity: 0.6;
+      }
     }
   </style>
 </head>
@@ -232,132 +247,98 @@
 
     <div class="page-summary">
       <p>
-        I'm Killian—a creative technologist working at the intersection of
-        ethical design, speculative systems, and boundless curiosity. I build
-        tools, experiences, and frameworks that challenge the assumptions of
-        dominant systems and carve out space for others to create, reclaim, or
-        exist.
+        I'm Killian—a creative technologist working at the intersection of ethical
+        design, speculative systems, and boundless curiosity. I build tools,
+        experiences, and frameworks that challenge the assumptions of dominant systems
+        and carve out space for others to create, reclaim, or exist.
       </p>
       <p>
-        My background spans narrative structure, technical implementation, and
-        digital privacy—all grounded in an unwavering commitment to help
-        others. I care deeply about empowering people to navigate, fortify,
-        and reshape their digital environments—whether through accessible
-        privacy tools, vibrant storytelling, or purpose-driven experimentation.
+        My background spans narrative structure, technical implementation, and digital
+        privacy—all grounded in an unwavering commitment to help others. I care
+        deeply about empowering people to navigate, fortify, and reshape their digital
+        environments—whether through accessible privacy tools, vibrant storytelling,
+        or purpose-driven experimentation.
       </p>
       <p>
-        My work is guided by a simple principle: if something isn't serving
-        people, it's time to compost it—and cultivate something radically
-        better.
+        My work is guided by a simple principle: if something isn't serving people,
+        it's time to compost it—and cultivate something radically better.
       </p>
     </div>
 
     <div class="orb-nav-container">
-      <!-- Left arrow container -->
-      <div
-        id="arrow-left"
-        class="arrow-container arrow-left"
-        aria-label="Previous Orb"
-        role="button"
-        tabindex="0"
-      >
-        <div class="arrow-group">
-          <svg class="arrow-svg" viewBox="0 0 24 24">
+      <a href="/about" class="arrow-container arrow-left" aria-label="Navigate to About">
+        <div class="arrow-group" role="presentation">
+          <!-- Three left-pointing arrows -->
+          <svg
+            class="arrow"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
             <polyline points="15 18 9 12 15 6" />
           </svg>
-          <svg class="arrow-svg" viewBox="0 0 24 24">
+          <svg
+            class="arrow"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
             <polyline points="15 18 9 12 15 6" />
           </svg>
-          <svg class="arrow-svg" viewBox="0 0 24 24">
+          <svg
+            class="arrow"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </div>
-      </div>
-
-      <!-- Big orb container -->
-      <a
-        id="main-orb"
-        href="/portfolio"
-        class="orb-container main"
-        aria-label="Portfolio Section"
-      >
-        <div class="glow-animation"></div>
-        <div class="orb-text">See My Work</div>
       </a>
 
-      <!-- Right arrow container -->
-      <div
-        id="arrow-right"
-        class="arrow-container arrow-right"
-        aria-label="Next Orb"
-        role="button"
-        tabindex="0"
-      >
-        <div class="arrow-group">
-          <svg class="arrow-svg" viewBox="0 0 24 24">
-            <polyline points="9 18 15 12 9 6" />
+      <a href="/portfolio" class="orb-container main selected">
+        <div class="glow-animation"></div>
+        <div class="orb">
+          <div class="orb-text">See My Work</div>
+        </div>
+      </a>
+
+      <a href="/contact" class="arrow-container arrow-right" aria-label="Navigate to Contact">
+        <div class="arrow-group" role="presentation">
+          <!-- Three right-pointing arrows -->
+          <svg
+            class="arrow"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <polyline points="9 6 15 12 9 18" />
           </svg>
-          <svg class="arrow-svg" viewBox="0 0 24 24">
-            <polyline points="9 18 15 12 9 6" />
+          <svg
+            class="arrow"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <polyline points="9 6 15 12 9 18" />
           </svg>
-          <svg class="arrow-svg" viewBox="0 0 24 24">
-            <polyline points="9 18 15 12 9 6" />
+          <svg
+            class="arrow"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <polyline points="9 6 15 12 9 18" />
           </svg>
         </div>
-      </div>
+      </a>
     </div>
   </main>
-
-  <script>
-    // Orb data: link + label
-    const orbs = [
-      { href: '/about', label: 'About' },
-      { href: '/portfolio', label: 'See My Work' },
-      { href: '/contact', label: 'Contact' },
-    ];
-
-    let currentIndex = 1; // Start at 'See My Work' as in your original
-
-    const mainOrb = document.getElementById('main-orb');
-    const orbText = mainOrb.querySelector('.orb-text');
-    const arrowLeft = document.getElementById('arrow-left');
-    const arrowRight = document.getElementById('arrow-right');
-
-    // Function to update orb content
-    function updateOrb() {
-      const currentOrb = orbs[currentIndex];
-      mainOrb.href = currentOrb.href;
-      orbText.textContent = currentOrb.label;
-    }
-
-    // Navigation handlers
-    arrowLeft.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + orbs.length) % orbs.length;
-      updateOrb();
-    });
-
-    arrowRight.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % orbs.length;
-      updateOrb();
-    });
-
-    // Keyboard accessibility for arrows
-    arrowLeft.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        arrowLeft.click();
-      }
-    });
-
-    arrowRight.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        arrowRight.click();
-      }
-    });
-
-    // Initialize on load
-    updateOrb();
-  </script>
 </body>
 </html>
