@@ -72,7 +72,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.8s ease;
 }
 
 .main .orb:hover {
@@ -114,19 +114,22 @@
   top: 75%; /* Lower position */
 }
 
-/* Hover expansion - extends away from center only */
+/* Hover expansion - left arrow expands only to the left */
 .arrow-left:hover {
   width: 80px;
   border-radius: 40px;
   padding: 0 8px;
-  transform: translateY(-0%) translateX(-30px); /* Extends only left (width difference) */
+  transform: translateY(-50%) translateX(-40px); /* Moves entire orb left so expansion goes left */
+  transform-origin: right center; /* Expansion anchored to right edge */
 }
 
+/* Right arrow expands only to the right */
 .arrow-right:hover {
   width: 80px;
   border-radius: 40px;
   padding: 0 8px;
-  transform: translateY(-0%) translateX(30px); /* Extends only right (width difference) */
+  transform: translateY(-50%) translateX(40px); /* Moves entire orb right so expansion goes right */
+  transform-origin: left center; /* Expansion anchored to left edge */
 }
 
 /* Arrow group container - to tightly bundle arrows horizontally */
