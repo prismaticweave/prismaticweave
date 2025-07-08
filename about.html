@@ -342,6 +342,25 @@
     opacity: 0.6;
   }
 }
+    /* Text fade animation */
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.fade-out {
+  animation: fadeOut 0.2s forwards ease-in;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s forwards ease-out;
+}
+
   </style>
 </head>
 
@@ -357,7 +376,7 @@
 
   <!-- Orb and arrow navigation positioned below summary -->
   <div class="orb-nav-container">
-    <a href="/about" class="arrow-container arrow-left" aria-label="Navigate to About">
+    <div class="arrow-container arrow-left" aria-label="Previous" role="button" tabindex="0">
       <div class="arrow-group" role="presentation">
         <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <polyline points="15 18 9 12 15 6" />
@@ -371,14 +390,14 @@
       </div>
     </a>
 
-    <a href="/portfolio" class="orb-container main selected">
+    <a href="portfolio.html" id="main-orb" class="orb-container main selected">
       <div class="glow-animation"></div>
       <div class="orb">
-        <div class="orb-text">See My Work</div>
+        <div class="orb-text" id="orb-text">See My Work</div>
       </div>
     </a>
 
-    <a href="/contact" class="arrow-container arrow-right" aria-label="Navigate to Contact">
+   <div class="arrow-container arrow-right" aria-label="Next" role="button" tabindex="0">
       <div class="arrow-group" role="presentation">
         <svg class="arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <polyline points="9 6 15 12 9 18" />
@@ -392,6 +411,49 @@
       </div>
     </a>
   </div>
+<script>
+  const orbOptions = [
+    { text: "See My Work", href: "portfolio.html" },
+    { text: "Let's Connect", href: "contact.html" },
+    { text: "Research & Rumination", href: "documents.html" },
+    { text: "Education & Tutorials", href: "resources.html" }
+  ];
+
+  let currentIndex = 0;
+
+  const orbText = document.getElementById("orb-text");
+  const mainOrb = document.getElementById("main-orb");
+
+  function updateOrb(index) {
+    const { text, href } = orbOptions[index];
+
+    // Animate out
+    orbText.classList.add("fade-out");
+
+    setTimeout(() => {
+      orbText.textContent = text;
+      mainOrb.setAttribute("href", href);
+
+      // Animate in
+      orbText.classList.remove("fade-out");
+      orbText.classList.add("fade-in");
+
+      setTimeout(() => {
+        orbText.classList.remove("fade-in");
+      }, 300);
+    }, 200);
+  }
+
+  document.querySelector(".arrow-left").addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + orbOptions.length) % orbOptions.length;
+    updateOrb(currentIndex);
+  });
+
+  document.querySelector(".arrow-right").addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % orbOptions.length;
+    updateOrb(currentIndex);
+  });
+</script>
 
 </body>
 </html>
