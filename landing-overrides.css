@@ -1,7 +1,7 @@
 /* ========== FONT SETUP ========== */
 @font-face {
   font-family: 'ZenLoop';
-  src: url('./assets/fonts/assets/fonts/ZenLoop-Regular.woff2') format('woff2');
+  src: url('./assets/fonts/ZenLoop-Regular.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
