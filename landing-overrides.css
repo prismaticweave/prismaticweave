@@ -2,7 +2,7 @@
 @font-face {
   font-family: 'ZenLoop';
   src: url('./assets/fonts/ZenLoop-Regular.woff2') format('woff2');
-  font-weight: 300;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
@@ -105,6 +105,11 @@ body {
   opacity: 0;
   animation: fadeInSubtle 1.5s ease-out 5.5s forwards,
              pulseGlow 2.5s ease-in-out 7s 2;
+  /* Fix button text centering */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
 }
 .cta:hover {
   border-color: #E9E4F0;
@@ -161,69 +166,69 @@ body {
 /* ========== MOBILE RESPONSIVENESS ========== */
 @media (max-width: 768px) {
   .title {
-    font-family: 'ZenLoop', 'Arial Black', sans-serif !important;
-    font-size: 2.8rem !important;
+    font-family: 'ZenLoop', 'Spline Sans Mono', monospace;
+    font-size: 3.5rem;
     letter-spacing: 0.02em;
-    margin: 1.5rem 0 1rem 0 !important;
-    font-weight: 300 !important;
+    margin: 1.5rem 0 1rem 0;
+    font-weight: normal;
   }
   
   .tagline {
-    font-size: 1.1rem !important;
-    margin-bottom: 1.5rem !important;
-    font-family: 'Squarish', Arial, sans-serif !important;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Squarish', Arial, sans-serif;
   }
   
   .additional-text {
-    font-size: 0.9rem !important;
-    max-width: 90% !important;
-    margin-bottom: 2rem !important;
-    line-height: 1.5 !important;
-    padding: 0 1rem !important;
-    font-family: 'Squarish', Arial, sans-serif !important;
+    font-size: 1rem;
+    max-width: 90%;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    padding: 0 1rem;
+    font-family: 'Squarish', Arial, sans-serif;
   }
   
   .content {
-    padding: 1.5rem 1rem !important;
+    padding: 1.5rem 1rem;
     min-height: 100vh;
-    justify-content: center !important;
+    justify-content: center;
   }
   
   .cta {
-    font-size: 1rem !important;
-    padding: 1rem 2rem !important;
+    font-size: 1rem;
+    padding: 1rem 2rem;
     min-height: 44px;
-    margin-top: 1.5rem !important;
-    font-family: 'Squarish', Arial, sans-serif !important;
+    margin-top: 1.5rem;
+    font-family: 'Squarish', Arial, sans-serif;
   }
 }
 
-/* ========== VERY SMALL PHONES ========== */
+/* ========== SMALL PHONES ========== */
 @media (max-width: 480px) {
   .title {
-    font-size: 1.5rem !important;
-    margin: 0.5rem 0 !important;
+    font-size: 2.5rem;
+    margin: 1rem 0;
   }
   
   .tagline {
-    font-size: 0.8rem !important;
-    margin-bottom: 0.75rem !important;
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
   
   .additional-text {
-    font-size: 0.7rem !important;
-    line-height: 1.3 !important;
-    max-width: 98% !important;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-width: 95%;
   }
   
   .content {
-    padding: 0.25rem !important;
-    padding-top: 1.5rem !important;
+    padding: 1rem 0.5rem;
+    padding-top: 2rem;
   }
   
   .cta {
-    font-size: 0.75rem !important;
-    padding: 0.6rem 1rem !important;
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
   }
 }
 
@@ -237,36 +242,36 @@ body {
   }
   
   .title {
-    font-size: 2rem !important;
-    margin: 0.5rem 0 !important;
-    font-family: 'ZenLoop', 'Arial Black', sans-serif !important;
+    font-size: 2.5rem;
+    margin: 0.5rem 0;
+    font-family: 'ZenLoop', 'Spline Sans Mono', monospace;
   }
   
   .tagline {
-    font-size: 0.95rem !important;
-    margin-bottom: 0.8rem !important;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
   }
   
   .additional-text {
-    font-size: 0.8rem !important;
-    margin-bottom: 1rem !important;
-    line-height: 1.3 !important;
-    max-width: 85% !important;
-    padding: 0 2rem !important;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    max-width: 85%;
+    padding: 0 2rem;
   }
   
   .content {
-    padding: 1rem 0 !important;
-    justify-content: center !important;
-    min-height: 100vh !important;
-    width: 100vw !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
+    padding: 1rem 0;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    box-sizing: border-box;
   }
   
   .cta {
-    padding: 0.7rem 1.5rem !important;
-    font-size: 0.9rem !important;
-    margin-top: 1rem !important;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
   }
 }
